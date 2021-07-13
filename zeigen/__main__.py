@@ -2,7 +2,7 @@
 """Command-line interface and logging configuration."""
 # standard-library imports
 from typing import Optional
-import importlib_metadata as metadata  # type: ignore
+from importlib import metadata  # type: ignore
 
 import typer
 
