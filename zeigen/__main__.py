@@ -4,6 +4,14 @@
 from importlib import metadata
 from typing import Optional
 
+<<<<<<< HEAD
+=======
+if sys.version_info >= (3, 8):
+    from importlib import metadata
+else:
+    import importlib_metadata as metadata
+
+>>>>>>> 3ff9e7431d4be10b20e9d0edd695d48ca135c940
 import typer
 
 from .common import APP

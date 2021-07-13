@@ -16,7 +16,7 @@ Zeigen: Find Hydrated Waters
     :target: https://github.com/hydrationdynamics/zeigen
     :alt: GitHub repository
 .. |Downloads| image:: https://pepy.tech/badge/zeigen
-     :target: https://pepy.tech/project/pytest_datadir_mgr
+     :target: https://pepy.tech/project/zeigen
      :alt: Download stats
 .. |Dlrate| image:: https://img.shields.io/pypi/dm/zeigen
    :target: https://github.com/hydrationdynamics/zeigen
