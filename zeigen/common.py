@@ -7,10 +7,6 @@ import sys
 from pathlib import Path
 from typing import Any
 
-if sys.version_info >= (3, 8):
-    from typing import TypedDict  # pylint: disable=no-name-in-module
-else:
-    from typing_extensions import TypedDict
 
 import loguru
 import toml
@@ -21,6 +17,7 @@ from schema import Optional  # type: ignore
 from schema import Schema  # type: ignore
 from schema import SchemaError  # type: ignore
 from schema import Use  # type: ignore
+from typing_extensions import TypedDict
 
 from . import __doc__ as docstring
 from .stat_dict import StatDict
