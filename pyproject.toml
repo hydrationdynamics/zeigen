@@ -48,12 +48,14 @@ attrs = "*"
 importlib-metadata = {version = "^4.0.1", python = "<3.8"}
 Pint = "^0.17"
 uncertainties = "^3.1.5"
+types-toml = "^0.1.3"
+types-tabulate = "^0.1.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
 coverage = {extras = ["toml"], version = "^5.4"}
 safety = "^1.10.3"
-mypy = "^0.812"
+mypy = "*"
 typeguard = "^2.12.0"
 xdoctest = {extras = ["colors"], version = "^0.15.4"}
 sphinx = "*"
@@ -70,7 +72,7 @@ pre-commit-hooks = "^3.4.0"
 sphinx-rtd-theme = "^0.5.2"
 Pygments = "^2.9.0"
 pytest-datadir-mgr = "^1.2.5"
-flynt = "^0.64"
+flynt = "*"
 isort = "^5.8.0"
 sh = "^1.14.1"
 nox-poetry = "^0.8.4"
@@ -78,7 +80,7 @@ pytest-cov = "^2.11.1"
 black = "*"
 flake8-rst-docstrings = "^0.2.3"
 pandas-stubs = "^1.2.0"
-sphinx-click = "^2.7.1"
+sphinx-click = "*"
 
 [tool.poetry.scripts]
 zeigen = "zeigen.__main__:main"
