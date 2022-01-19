@@ -49,37 +49,37 @@ Pint = "*"
 uncertainties = "*"
 types-toml = "*"
 types-tabulate = "*"
-gemmi = "^0.4.8"
+gemmi = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
 coverage = {extras = ["toml"], version = "*"}
-safety = "^1.10.3"
+safety = "*"
 mypy = "*"
-typeguard = "^2.12.0"
-xdoctest = {extras = ["colors"], version = "^0.15.4"}
+typeguard = "*"
+xdoctest = {extras = ["colors"], version = "*"}
 sphinx = "*"
-sphinx-autobuild = "^2021.3.14"
+sphinx-autobuild = "*"
 pre-commit = "*"
-flake8 = "^3.9.2"
-flake8-bandit = "^2.1.2"
-flake8-bugbear = "^21.4.3"
-flake8-docstrings = "^1.6.0"
-pep8-naming = "^0.12"
-darglint = "^1.8.0"
-reorder-python-imports = "^2.4.0"
-pre-commit-hooks = "^4.0.1"
-sphinx-rtd-theme = "^0.5.2"
-Pygments = "^2.9.0"
-pytest-datadir-mgr = "^1.2.5"
+flake8 = "*"
+flake8-bandit = "*"
+flake8-bugbear = "*"
+flake8-docstrings = "*"
+pep8-naming = "*"
+darglint = "*"
+reorder-python-imports = "*"
+pre-commit-hooks = "*"
+sphinx-rtd-theme = "*"
+Pygments = "*"
+pytest-datadir-mgr = "*"
 flynt = "*"
-isort = "^5.8.0"
-sh = "^1.14.1"
-nox-poetry = "^0.8.4"
-pytest-cov = "^2.11.1"
+isort = "*"
+sh = "*"
+nox-poetry = "*"
+pytest-cov = "*"
 black = "*"
-flake8-rst-docstrings = "^0.2.3"
-pandas-stubs = "^1.2.0"
+flake8-rst-docstrings = "*"
+pandas-stubs = "*"
 sphinx-click = "*"
 
 [tool.poetry.scripts]
@@ -87,7 +87,7 @@ zeigen = "zeigen.__main__:main"
 
 [tool.black]
 line-length = 79
-target-version = ['py38', 'py39']
+target-version = ['py38', 'py39', 'py310']
 include = '\.pyi?$'
 exclude = '''
 /(
@@ -139,5 +139,5 @@ style = "semver"
 addopts = "-x"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.1.0"]
 build-backend = "poetry.core.masonry.api"

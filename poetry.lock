@@ -225,7 +225,7 @@ python-versions = "*"
 
 [[package]]
 name = "docutils"
-version = "0.16"
+version = "0.17.1"
 description = "Docutils -- Python Documentation Utilities"
 category = "dev"
 optional = false
@@ -261,16 +261,16 @@ testing = ["covdefaults (>=1.2.0)", "coverage (>=4)", "pytest (>=4)", "pytest-co
 
 [[package]]
 name = "flake8"
-version = "3.9.2"
+version = "4.0.1"
 description = "the modular source code checker: pep8 pyflakes and co"
 category = "dev"
 optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
+python-versions = ">=3.6"
 
 [package.dependencies]
 mccabe = ">=0.6.0,<0.7.0"
-pycodestyle = ">=2.7.0,<2.8.0"
-pyflakes = ">=2.3.0,<2.4.0"
+pycodestyle = ">=2.8.0,<2.9.0"
+pyflakes = ">=2.4.0,<2.5.0"
 
 [[package]]
 name = "flake8-bandit"
@@ -288,7 +288,7 @@ pycodestyle = "*"
 
 [[package]]
 name = "flake8-bugbear"
-version = "21.11.29"
+version = "22.1.11"
 description = "A plugin for flake8 finding likely bugs and design problems in your program. Contains warnings that don't belong in pyflakes and pycodestyle."
 category = "dev"
 optional = false
@@ -380,7 +380,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "gemmi"
-version = "0.4.9"
+version = "0.5.1"
 description = "library for structural biology"
 category = "main"
 optional = false
@@ -610,11 +610,11 @@ tox_to_nox = ["jinja2", "tox"]
 
 [[package]]
 name = "nox-poetry"
-version = "0.8.6"
+version = "0.9.0"
 description = "nox-poetry"
 category = "dev"
 optional = false
-python-versions = ">=3.6.1,<4.0.0"
+python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
 nox = ">=2020.8.22"
@@ -798,11 +798,11 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "pycodestyle"
-version = "2.7.0"
+version = "2.8.0"
 description = "Python style guide checker"
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "pydocstyle"
@@ -820,7 +820,7 @@ toml = ["toml"]
 
 [[package]]
 name = "pyflakes"
-version = "2.3.1"
+version = "2.4.0"
 description = "passive checker of Python programs"
 category = "dev"
 optional = false
@@ -868,16 +868,15 @@ testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xm
 
 [[package]]
 name = "pytest-cov"
-version = "2.12.1"
+version = "3.0.0"
 description = "Pytest plugin for measuring coverage."
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.6"
 
 [package.dependencies]
-coverage = ">=5.2.1"
+coverage = {version = ">=5.2.1", extras = ["toml"]}
 pytest = ">=4.6"
-toml = "*"
 
 [package.extras]
 testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
@@ -1155,15 +1154,15 @@ sphinx = ">=2.0"
 
 [[package]]
 name = "sphinx-rtd-theme"
-version = "0.5.2"
+version = "1.0.0"
 description = "Read the Docs theme for Sphinx"
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
 
 [package.dependencies]
-docutils = "<0.17"
-sphinx = "*"
+docutils = "<0.18"
+sphinx = ">=1.6"
 
 [package.extras]
 dev = ["transifex-client", "sphinxcontrib-httpdomain", "bump2version"]
@@ -1440,7 +1439,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8.1,<3.11"
-content-hash = "e63924d851c8c273792d8b04c0801695d89504b34cc5b4cd1f325f718a4b24a7"
+content-hash = "b045aab5b42880f1ecc740820eeddd5fe322e37e93fbcdb5db1b4e85c7772b42"
 
 [metadata.files]
 alabaster = [
@@ -1573,8 +1572,8 @@ distlib = [
     {file = "distlib-0.3.4.zip", hash = "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"},
 ]
 docutils = [
-    {file = "docutils-0.16-py2.py3-none-any.whl", hash = "sha256:0c5b78adfbf7762415433f5515cd5c9e762339e23369dbe8000d84a4bf4ab3af"},
-    {file = "docutils-0.16.tar.gz", hash = "sha256:c2de3a60e9e7d07be26b7f2b00ca0309c207e06c100f9cc2a94931fc75a478fc"},
+    {file = "docutils-0.17.1-py2.py3-none-any.whl", hash = "sha256:cf316c8370a737a022b72b56874f6602acf974a37a9fba42ec2876387549fc61"},
+    {file = "docutils-0.17.1.tar.gz", hash = "sha256:686577d2e4c32380bb50cbb22f575ed742d58168cee37e99117a854bcd88f125"},
 ]
 dparse = [
     {file = "dparse-0.5.1-py3-none-any.whl", hash = "sha256:e953a25e44ebb60a5c6efc2add4420c177f1d8404509da88da9729202f306994"},
@@ -1585,15 +1584,15 @@ filelock = [
     {file = "filelock-3.4.2.tar.gz", hash = "sha256:38b4f4c989f9d06d44524df1b24bd19e167d851f19b50bf3e3559952dddc5b80"},
 ]
 flake8 = [
-    {file = "flake8-3.9.2-py2.py3-none-any.whl", hash = "sha256:bf8fd333346d844f616e8d47905ef3a3384edae6b4e9beb0c5101e25e3110907"},
-    {file = "flake8-3.9.2.tar.gz", hash = "sha256:07528381786f2a6237b061f6e96610a4167b226cb926e2aa2b6b1d78057c576b"},
+    {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
+    {file = "flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"},
 ]
 flake8-bandit = [
     {file = "flake8_bandit-2.1.2.tar.gz", hash = "sha256:687fc8da2e4a239b206af2e54a90093572a60d0954f3054e23690739b0b0de3b"},
 ]
 flake8-bugbear = [
-    {file = "flake8-bugbear-21.11.29.tar.gz", hash = "sha256:8b04cb2fafc6a78e1a9d873bd3988e4282f7959bb6b0d7c1ae648ec09b937a7b"},
-    {file = "flake8_bugbear-21.11.29-py36.py37.py38-none-any.whl", hash = "sha256:179e41ddae5de5e3c20d1f61736feeb234e70958fbb56ab3c28a67739c8e9a82"},
+    {file = "flake8-bugbear-22.1.11.tar.gz", hash = "sha256:4c2a4136bd4ecb8bf02d5159af302ffc067642784c9d0488b33ce4610da825ee"},
+    {file = "flake8_bugbear-22.1.11-py3-none-any.whl", hash = "sha256:ce7ae44aaaf67ef192b8a6de94a5ac617144e1675ad0654fdea556f48dc18d9b"},
 ]
 flake8-docstrings = [
     {file = "flake8-docstrings-1.6.0.tar.gz", hash = "sha256:9fe7c6a306064af8e62a055c2f61e9eb1da55f84bb39caef2b84ce53708ac34b"},
@@ -1619,38 +1618,33 @@ future = [
     {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
 ]
 gemmi = [
-    {file = "gemmi-0.4.9-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:d5a35e37cf254bfe4921c753dc30f712b9051788ec450dbbbc603a0e095e3bd7"},
-    {file = "gemmi-0.4.9-cp27-cp27m-manylinux2010_i686.whl", hash = "sha256:ee25a8c95f63c451cada6eb69f3c8f79865a47c2f926728f53b5472d2af16c62"},
-    {file = "gemmi-0.4.9-cp27-cp27m-manylinux2010_x86_64.whl", hash = "sha256:aaafb4e64c18f850b3bb0ea7e30c9c9634fd17c700a4fdaac29701e6b3c469a1"},
-    {file = "gemmi-0.4.9-cp27-cp27mu-manylinux2010_i686.whl", hash = "sha256:4847de447156041cb12353c2ee720b323f9aa997a235e339fb796105c99df394"},
-    {file = "gemmi-0.4.9-cp27-cp27mu-manylinux2010_x86_64.whl", hash = "sha256:8514d2d67d49953e646fd1e145ce869402e8125128de95194d6ed6bf4fbb86f2"},
-    {file = "gemmi-0.4.9-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:11c1a8a1f8948a84773639f8a3956316016ac608cbc3d78acb3aa5be66b60a43"},
-    {file = "gemmi-0.4.9-cp36-cp36m-manylinux2010_i686.whl", hash = "sha256:401c14e0d45b78b568212346ca2136e47741de71dec8b035e2b5033abead8ae0"},
-    {file = "gemmi-0.4.9-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:697e50daedd05995e352dc3200c13802105648eae296c126bafa1f33d67d4e92"},
-    {file = "gemmi-0.4.9-cp36-cp36m-win32.whl", hash = "sha256:cf9a024794b0143e3243e2bc71eb7b3a679c63630659191ac23a199a034c0369"},
-    {file = "gemmi-0.4.9-cp36-cp36m-win_amd64.whl", hash = "sha256:1366575429f2368d33398750bd9c5fb5be41d51c592c66665c795eec9c92dddf"},
-    {file = "gemmi-0.4.9-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:2e0a360c542857888fc366f62046b329261636cde80edbc19b6d5f0ad2d83863"},
-    {file = "gemmi-0.4.9-cp37-cp37m-manylinux2010_i686.whl", hash = "sha256:dd7a9942185154571f91b4f2bc706757601722ef7d60447f3ffaf46e81cd5dc5"},
-    {file = "gemmi-0.4.9-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:09f292a9409b29db9564fc9a43ea44b474ad5b3713285fbb10aa4620cb98efdd"},
-    {file = "gemmi-0.4.9-cp37-cp37m-win32.whl", hash = "sha256:f291c4bb2da17785b8387ff7001e8cf47ee9fcc4cc280cf477423e0dac508aef"},
-    {file = "gemmi-0.4.9-cp37-cp37m-win_amd64.whl", hash = "sha256:b71cf5041619f9b58571c451f4d3b48a0612cd4bd43b5b135f9c2a9ec0638bc8"},
-    {file = "gemmi-0.4.9-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:b9e6335aa3191164ab0225ff29fa57a73019a8b6c1cf3f93a614526da957bdc2"},
-    {file = "gemmi-0.4.9-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:0cc67ddbdf4d2f8db4a08c682f5bd180cf1d9d2af95fc460178d44cfd1f56f74"},
-    {file = "gemmi-0.4.9-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:d7bf780c00febd2a94070676dd9768e6dfbc04beecb1c4b974fe7f815ab5cb95"},
-    {file = "gemmi-0.4.9-cp38-cp38-win32.whl", hash = "sha256:975416e0a64dee3374b85def84025e197b4a3aeb07995644085a1b8c63488f25"},
-    {file = "gemmi-0.4.9-cp38-cp38-win_amd64.whl", hash = "sha256:156ffccc92cfb4e91162fec04233ea34f8805743ca30cdb02f03385904f8c230"},
-    {file = "gemmi-0.4.9-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:91222254241a6f4902060de83af18187f9b9b5e2d2f0018fb0b71d34ea7fc977"},
-    {file = "gemmi-0.4.9-cp39-cp39-manylinux2010_i686.whl", hash = "sha256:abdba8c7c038324d151b5cf0396486361a3be40cf175eec1fa480f7b3828664f"},
-    {file = "gemmi-0.4.9-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:dc9adc300f31cf721e11ba2b84840b9829edb702fc2960839c53009537b7458e"},
-    {file = "gemmi-0.4.9-cp39-cp39-win32.whl", hash = "sha256:819ded41b98463ed6dfac06826cf07fa5063691610507bbbf428e720b1e23ff2"},
-    {file = "gemmi-0.4.9-cp39-cp39-win_amd64.whl", hash = "sha256:c684fed655fd3d1a5d3a783da7307f47453c696314814824a5eda722c74d8ac3"},
-    {file = "gemmi-0.4.9-pp36-pypy36_pp73-macosx_10_9_x86_64.whl", hash = "sha256:7fd801ce676f02587c5758915f40dbc8f3b325f93f0f79c5d26017b3716c1f22"},
-    {file = "gemmi-0.4.9-pp36-pypy36_pp73-manylinux2010_x86_64.whl", hash = "sha256:a4372a76f01e5cff060c16722b1065488170554c19207011093c9d706b81ad88"},
-    {file = "gemmi-0.4.9-pp36-pypy36_pp73-win32.whl", hash = "sha256:0b696745d4cc855bcf8b7b416c844de428278257394e227f052084a8f487d2e2"},
-    {file = "gemmi-0.4.9-pp37-pypy37_pp73-macosx_10_9_x86_64.whl", hash = "sha256:7eb54586c8b44806d20049b5d4a89432cd4b069f85e9d701d0c9beca0288d689"},
-    {file = "gemmi-0.4.9-pp37-pypy37_pp73-manylinux2010_x86_64.whl", hash = "sha256:f33eb94a59135f8c8aa52ab61b7fcd2e12302cc7aea98a0b52f26287935e7cb8"},
-    {file = "gemmi-0.4.9-pp37-pypy37_pp73-win32.whl", hash = "sha256:822158ddf54bdb96d7af781821acf8260c3d6577994ccab899ba085482a4db9d"},
-    {file = "gemmi-0.4.9.tar.gz", hash = "sha256:0a4a836227525dbcbe10743d9a5af8fd057c86fe3c7061e7e76eb1cf6ef2bdd1"},
+    {file = "gemmi-0.5.1-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:7b3822eb2189bc4709702724b409aac13d732f4dfe4aee9d01276cf41823c670"},
+    {file = "gemmi-0.5.1-cp27-cp27m-manylinux2010_x86_64.whl", hash = "sha256:b3c9e2b79df203103314aaf986209b16642157ba33826a344047b8ceaa300599"},
+    {file = "gemmi-0.5.1-cp27-cp27mu-manylinux2010_x86_64.whl", hash = "sha256:9c43c2b375d68e8a9feeec1ea649c3caae0a4078af8f4599a8003d9f4b1a520d"},
+    {file = "gemmi-0.5.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:f6e1ad1c3bbf1de0ba84996dc14012e778edddb4b3a5a0638495269bc6e8258d"},
+    {file = "gemmi-0.5.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:66d34998933fdc12f9d6b4c2c8f38472660cd42341ddda2c82051b7ab87f4378"},
+    {file = "gemmi-0.5.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:33bd91545156d8c79c422c88df6ff2651c7697d2a1e1592653b8280941dcdcc6"},
+    {file = "gemmi-0.5.1-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:baabb0701a1231016330b9376b7db2936ea37a0fd18bb1099a6616e50b7b3341"},
+    {file = "gemmi-0.5.1-cp310-cp310-win_amd64.whl", hash = "sha256:aff5a39a453e55f1e07c10bf3dac741a58dee4fa6cc697a96de2569e923acaa1"},
+    {file = "gemmi-0.5.1-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:efc5a56da19ee7b2dc314c17a16248c6e4bbc644a7585614daa6f61d828d5ec4"},
+    {file = "gemmi-0.5.1-cp36-cp36m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f58e885278846ad937f5ef73998fdd319bfd75551c35321cc21e6fa86c57c1f5"},
+    {file = "gemmi-0.5.1-cp36-cp36m-win_amd64.whl", hash = "sha256:14f049b20483ec7efe2855f3a542179073759586a8c98b8cdb3e0a29fadcbdc1"},
+    {file = "gemmi-0.5.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:bbeff7a9d7f50519d4db7aeb9b68c718d163706eb7c0712f101ac67461e619ff"},
+    {file = "gemmi-0.5.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b96a627e5bf89153ef858d2bfcca8c91bb3070a7aea437ed1e6c061c64b02da4"},
+    {file = "gemmi-0.5.1-cp37-cp37m-win_amd64.whl", hash = "sha256:b69fb0b6d65fb51fc1b2e48d0eb76bcde400a0bfc75b64b3ab63a66774477949"},
+    {file = "gemmi-0.5.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:0a8efebb36ac53fcb4d8cdf0e37df93ac6447fe3378ea730af34cf9d825b0452"},
+    {file = "gemmi-0.5.1-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:7e3f22fa0b65c4846bd997862c693b3ba2d0aab340798a2b8b53b65ae7ca0afd"},
+    {file = "gemmi-0.5.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c32fb0cffcfa81e33ce1088d242c4bf3125ff9e619362928d7b3abb8ebbf6495"},
+    {file = "gemmi-0.5.1-cp38-cp38-win_amd64.whl", hash = "sha256:0bc3ed83eddba358428e1eef2dc21bc4ebb3b368885500056d2b35ef8fcd581f"},
+    {file = "gemmi-0.5.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:f65cc04ae47aeec447a8a75159c8b968f2a4d49f71f7645c6f622185d5c46fec"},
+    {file = "gemmi-0.5.1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:1fea248b2a26270057185f39352c0462c5a4527713b201bc0579ba21256aafbc"},
+    {file = "gemmi-0.5.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f7a392b6e2ab1efd174c24a9f50dcb57bda3f1173987fa4d005f4c4669ac0847"},
+    {file = "gemmi-0.5.1-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:0a261aa71fdec2a4db90b1058c40c5460a9b678fa8551f92be9fe99ee6494d0c"},
+    {file = "gemmi-0.5.1-cp39-cp39-win_amd64.whl", hash = "sha256:f73ff58a34953454f8a28c05d48fcb912d72c2d92e0eb19510026a2d28818d63"},
+    {file = "gemmi-0.5.1-pp38-pypy38_pp73-macosx_10_9_x86_64.whl", hash = "sha256:61083281d14b5edd93c0a2e5cd7391bddae4bf7d7ec5b793b734b1f5800c2b82"},
+    {file = "gemmi-0.5.1-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c68a92ca259eff55886414102f150bac57195f596c0c11e737f562119265f2bb"},
+    {file = "gemmi-0.5.1-pp38-pypy38_pp73-win_amd64.whl", hash = "sha256:980c7971c6a447126f52efa87db7a17f2858b2aee279a10c4146633b7f45a69a"},
+    {file = "gemmi-0.5.1.tar.gz", hash = "sha256:a641843b527cc9b083afdad619b420d5ef86e092f07209ec7b9555902dc3cec9"},
 ]
 gitdb = [
     {file = "gitdb-4.0.9-py3-none-any.whl", hash = "sha256:8033ad4e853066ba6ca92050b9df2f89301b8fc8bf7e9324d412a63f8bf1a8fd"},
@@ -1888,8 +1882,8 @@ nox = [
     {file = "nox-2022.1.7.tar.gz", hash = "sha256:b375238cebb0b9df2fab74b8d0ce1a50cd80df60ca2e13f38f539454fcd97d7e"},
 ]
 nox-poetry = [
-    {file = "nox-poetry-0.8.6.tar.gz", hash = "sha256:2cd8dd1f539a877d1fae78ffe47e3943644d6f2fc0a2833d805513d8ccb1c749"},
-    {file = "nox_poetry-0.8.6-py3-none-any.whl", hash = "sha256:22aadfbca68353616cf46061bbf0adcd410d22212df0fbffed5d5519d98ce3cf"},
+    {file = "nox-poetry-0.9.0.tar.gz", hash = "sha256:ea48fa535cd048854da35af7c6c3e92046fbed9b9023bb81193fb4d2d3a47c92"},
+    {file = "nox_poetry-0.9.0-py3-none-any.whl", hash = "sha256:33423c855fb47e2901faf9e15937326bc20c6e356eef825903eed4f8bbda69d3"},
 ]
 numpy = [
     {file = "numpy-1.22.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:3d62d6b0870b53799204515145935608cdeb4cebb95a26800b6750e48884cc5b"},
@@ -2025,16 +2019,16 @@ py = [
     {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
 ]
 pycodestyle = [
-    {file = "pycodestyle-2.7.0-py2.py3-none-any.whl", hash = "sha256:514f76d918fcc0b55c6680472f0a37970994e07bbb80725808c17089be302068"},
-    {file = "pycodestyle-2.7.0.tar.gz", hash = "sha256:c389c1d06bf7904078ca03399a4816f974a1d590090fecea0c63ec26ebaf1cef"},
+    {file = "pycodestyle-2.8.0-py2.py3-none-any.whl", hash = "sha256:720f8b39dde8b293825e7ff02c475f3077124006db4f440dcbc9a20b76548a20"},
+    {file = "pycodestyle-2.8.0.tar.gz", hash = "sha256:eddd5847ef438ea1c7870ca7eb78a9d47ce0cdb4851a5523949f2601d0cbbe7f"},
 ]
 pydocstyle = [
     {file = "pydocstyle-6.1.1-py3-none-any.whl", hash = "sha256:6987826d6775056839940041beef5c08cc7e3d71d63149b48e36727f70144dc4"},
     {file = "pydocstyle-6.1.1.tar.gz", hash = "sha256:1d41b7c459ba0ee6c345f2eb9ae827cab14a7533a88c5c6f7e94923f72df92dc"},
 ]
 pyflakes = [
-    {file = "pyflakes-2.3.1-py2.py3-none-any.whl", hash = "sha256:7893783d01b8a89811dd72d7dfd4d84ff098e5eed95cfa8905b22bbffe52efc3"},
-    {file = "pyflakes-2.3.1.tar.gz", hash = "sha256:f5bc8ecabc05bb9d291eb5203d6810b49040f6ff446a756326104746cc00c1db"},
+    {file = "pyflakes-2.4.0-py2.py3-none-any.whl", hash = "sha256:3bb3a3f256f4b7968c9c788781e4ff07dce46bdf12339dcda61053375426ee2e"},
+    {file = "pyflakes-2.4.0.tar.gz", hash = "sha256:05a85c2872edf37a4ed30b0cce2f6093e1d0581f8c19d7393122da7e25b2b24c"},
 ]
 pygments = [
     {file = "Pygments-2.11.2-py3-none-any.whl", hash = "sha256:44238f1b60a76d78fc8ca0528ee429702aae011c265fe6a8dd8b63049ae41c65"},
@@ -2049,8 +2043,8 @@ pytest = [
     {file = "pytest-6.2.5.tar.gz", hash = "sha256:131b36680866a76e6781d13f101efb86cf674ebb9762eb70d3082b6f29889e89"},
 ]
 pytest-cov = [
-    {file = "pytest-cov-2.12.1.tar.gz", hash = "sha256:261ceeb8c227b726249b376b8526b600f38667ee314f910353fa318caa01f4d7"},
-    {file = "pytest_cov-2.12.1-py2.py3-none-any.whl", hash = "sha256:261bb9e47e65bd099c89c3edf92972865210c36813f80ede5277dceb77a4a62a"},
+    {file = "pytest-cov-3.0.0.tar.gz", hash = "sha256:e7f0f5b1617d2210a2cabc266dfe2f4c75a8d32fb89eafb7ad9d06f6d076d470"},
+    {file = "pytest_cov-3.0.0-py3-none-any.whl", hash = "sha256:578d5d15ac4a25e5f961c938b85a05b09fdaae9deef3bb6de9a6e766622ca7a6"},
 ]
 pytest-datadir-mgr = [
     {file = "pytest-datadir-mgr-1.2.7.tar.gz", hash = "sha256:90c7f73978085eb41917b6c41748e279b9b9d98d8184587ff28a97c854d3b9c3"},
@@ -2217,8 +2211,8 @@ sphinx-click = [
     {file = "sphinx_click-3.0.2-py3-none-any.whl", hash = "sha256:8529a02bea8cd2cd47daba2f71d7935c727c89d70baabec7fca31af49a0c379f"},
 ]
 sphinx-rtd-theme = [
-    {file = "sphinx_rtd_theme-0.5.2-py2.py3-none-any.whl", hash = "sha256:4a05bdbe8b1446d77a01e20a23ebc6777c74f43237035e76be89699308987d6f"},
-    {file = "sphinx_rtd_theme-0.5.2.tar.gz", hash = "sha256:32bd3b5d13dc8186d7a42fc816a23d32e83a4827d7d9882948e7b837c232da5a"},
+    {file = "sphinx_rtd_theme-1.0.0-py2.py3-none-any.whl", hash = "sha256:4d35a56f4508cfee4c4fb604373ede6feae2a306731d533f409ef5c3496fdbd8"},
+    {file = "sphinx_rtd_theme-1.0.0.tar.gz", hash = "sha256:eec6d497e4c2195fa0e8b2016b337532b8a699a68bcb22a512870e16925c6a5c"},
 ]
 sphinxcontrib-applehelp = [
     {file = "sphinxcontrib-applehelp-1.0.2.tar.gz", hash = "sha256:a072735ec80e7675e3f432fcae8610ecf509c5f1869d17e2eecff44389cdbc58"},
