@@ -30,7 +30,7 @@ Zeigen: Find Hydrated Waters
 .. |Coverage| image:: https://codecov.io/gh/hydrationdynamics/zeigen/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/hydrationdynamics/zeigen
     :alt: Codecov.io test coverage
-.. |Codacy| image:: https://api.codacy.com/project/badge/Grade/d9c8687d3c544049a293b2faf8919c07
+.. |Codacy| image:: https://app.codacy.com/project/badge/Grade/3e29ba5ba23d48888372138790ab26f3
     :target: https://www.codacy.com/gh/hydrationdynamics/zeigen?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hydrationdynamics/zeigen&amp;utm_campaign=Badge_Grade
     :alt: Codacy.io grade
 .. |Issues| image:: https://img.shields.io/github/issues/hydrationdynamics/zeigen.svg
@@ -62,7 +62,7 @@ Features
 Requirements
 ------------
 
-* Tested on Python 3.7 to 3.9 on Linux and Mac
+* Tested on Python 3.9 and 3.10 on Linux and Mac
 
 
 Installation
