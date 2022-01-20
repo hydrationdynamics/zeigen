@@ -65,7 +65,7 @@ jobs:
           print("::set-output name=result::{}".format(result))
 
       - name: Restore pre-commit cache
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         if: matrix.session == 'pre-commit'
         with:
           path: ~/.cache/pre-commit
@@ -79,14 +79,14 @@ jobs:
 
       - name: Upload coverage data
         if: always() && matrix.session == 'tests'
-        uses: "actions/upload-artifact@v2.2.4"
+        uses: "actions/upload-artifact@v2.3.1"
         with:
           name: coverage-data
           path: ".coverage.*"
 
       - name: Upload documentation
         if: matrix.session == 'docs-build'
-        uses: actions/upload-artifact@v2.2.4
+        uses: "actions/upload-artifact@v2.3.1"
         with:
           name: docs
           path: docs/_build
@@ -134,4 +134,4 @@ jobs:
           nox --force-color --session=coverage -- xml
 
       - name: Upload coverage report
-        uses: codecov/codecov-action@v1.5.2
+        uses: codecov/codecov-action@v2.1.0
