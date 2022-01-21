@@ -50,6 +50,7 @@ uncertainties = "*"
 types-toml = "*"
 types-tabulate = "*"
 gemmi = "*"
+statsdict = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
