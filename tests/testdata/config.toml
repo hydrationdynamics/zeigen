@@ -1,30 +1,50 @@
-# One input record per column
-[[inputs]]
-# uri can be filepaths or URLs
-uri = "fake_h2o.tsv"
-T = {col=0, uncertainty=0.3}
-rate = {name="k", uncertainties="±k"}
+[query]
+polymer_entity_type = "Protein"
+has_experimental_data = true
 
-[[inputs]]
-uri = "fake_d2o.tsv"
-T = {col=0, uncertainty=0.3}
-rate = {name="k", uncertainties="±k"}
 
-[combined]
-title = "Dielectric relaxation"
-filename = "dielectric_relaxation.tsv"
+[query.neutron]
+data_collection_resolution_min_A = 1.5
 
-[[combined.rates]]
-name = "k_H2O"
-label = "Fake in H$_2$O"
-# line labels locations in units of 1000/T and log rate
-# with the point on the left edge
-line_label_loc = [4.6, 4.5]
+[query.xray]
+data_collection_resolution_min_A = 1.1
 
-[[combined.rates]]
-name = "k_D2O"
-label = "Fake in D$_2$O"
-line_label_loc = [3.9, 7.15]
+[report]
+exptl_crystal = [
+"density_Matthews",
+"density_percent_sol"
+]
+exptl_crystal_grow = [
+"pH"
+]
+pubmed = [
+      "rcsb_pubmed_central_id"
+]
+rcsb_entry_container_identifiers = [
+      "entry_id"
+]
+rcsb_entry_info = [
+      "deposited_atom_count",
+      "deposited_model_count",
+      "deposited_nonpolymer_entity_instance_count",
+      "deposited_polymer_entity_instance_count",
+      "deposited_polymer_monomer_count",
+      "deposited_solvent_atom_count",
+      "disulfide_bond_count",
+      "entity_count",
+      "molecular_weight",
+      "nonpolymer_entity_count",
+      "polymer_entity_count_DNA",
+      "polymer_entity_count_nucleic_acid_hybrid",
+      "polymer_entity_count_protein",
+      "polymer_entity_count_RNA",
+      "resolution_combined"
+      ]
+
+[[report.rcsb_entry_info]]
+diffrn_resolution_high  = [
+     "value"
+     ]
 
 [plot]
 secondary_axis_units = "C"

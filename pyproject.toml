@@ -51,6 +51,7 @@ types-toml = "*"
 types-tabulate = "*"
 gemmi = "*"
 statsdict = "*"
+rcsbsearch = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

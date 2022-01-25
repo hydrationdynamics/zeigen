@@ -25,7 +25,7 @@ def test_subcommand_help():
 
 @print_docstring()
 def test_find(datadir_mgr):
-    """Test combining rate data."""
+    """Test finding hydrated proton species."""
     with datadir_mgr.in_tmp_dir(
         inpathlist=INPUTS,
         save_outputs=True,
@@ -39,6 +39,6 @@ def test_find(datadir_mgr):
             )
         except sh.ErrorReturnCode as errors:
             print(errors)
-            pytest.fail("combine failed")
+            pytest.fail("find failed")
         for filestring in OUTPUTS:
             assert Path(filestring).exists()
