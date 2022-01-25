@@ -16,9 +16,9 @@ from .common import STATS
 @STATS.auto_save_and_report
 def find(toml_file: Path) -> None:
     """Find hydrated waters in structure file."""
-    conf = read_conf_file(toml_file, "configuration file", "combine")
-    inputs = conf["inputs"]
-    print(inputs)
+    conf = read_conf_file(toml_file, "configuration_file", "none")
+    find_params = conf["find"]
+    logger.info(f"find params={find_params}")
     output = "hydrated_waters.tsv"
     logger.info(f"writing file {output}")
     df = pd.DataFrame({"A": [1, 2, 3]})

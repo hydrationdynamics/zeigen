@@ -46,6 +46,15 @@ diffrn_resolution_high  = [
      "value"
      ]
 
+[find]
+junk = "blah"
+
+[find.neutron]
+junk = "neuts"
+
+[find.xray]
+junk = "heavy"
+
 [plot]
 secondary_axis_units = "C"
 y_label = "peak $k_{\\beta}$"

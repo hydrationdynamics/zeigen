@@ -143,6 +143,8 @@ def read_conf_file(
         file_schema = COMBINE_SCHEMA
     elif schema_type == "plot":
         file_schema = PLOTTING_SCHEMA
+    elif schema_type == "none":
+        return toml_dict
     else:
         logger.error(f"unknown schema type {schema_type}")
         sys.exit(1)

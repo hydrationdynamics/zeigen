@@ -10,6 +10,7 @@ from .common import APP
 from .common import NAME
 from .common import STATE
 from .find import find
+from .query import query
 
 # global constants
 unused_cli_funcs = (find,)  # noqa: F841
