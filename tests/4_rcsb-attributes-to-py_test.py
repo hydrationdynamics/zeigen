@@ -10,6 +10,8 @@ import sh
 from . import help_check
 from . import print_docstring
 
+# from zeigen.rcsb_attributes import rcsb_attr_set as old_attr_set
+
 # global constants
 zeigen = sh.Command("zeigen")
 SUBCOMMAND = "rcsb-attributes-to-py"
@@ -38,3 +40,5 @@ def test_rcsb_attributes_to_py(datadir_mgr):
             pytest.fail("rcsb-attributes-to-py failed")
         for filestring in ["rcsb_attributes.py"]:
             assert Path(filestring).exists()
+        # from . import rcsb_attributes
+        # assert old_attr_list == rcsb_attributes.rcsb_attr_set

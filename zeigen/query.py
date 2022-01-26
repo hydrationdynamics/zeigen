@@ -11,13 +11,13 @@ from typing import Union
 
 from loguru import logger
 from rcsbsearch import Attr as RCSBAttr  # type: ignore
-from rcsbsearch import rcsb_attributes  # type: ignore
+from rcsbsearch import rcsb_attributes as rcsbsearch_attributes  # type: ignore
 from rcsbsearch.search import Terminal  # type: ignore
 from statsdict import Stat
 
+from . import rcsb_attributes
 from .common import APP
 from .common import STATS
-from .rcsb_attributes import rcsb_attr_list
 
 # import pandas as pd
 # from .common import read_conf_file
@@ -39,18 +39,18 @@ def rcsb_attributes_to_py() -> None:
     logger.info(f'Writing RCSB attributes list to "{outfile}".')
     with Path(outfile).open("w") as fp:
         date = datetime.date.today()
-        fp.write(f'"""List of RCSB attributes as of {date}."""\n')
-        fp.write("rcsb_attr_list = [\n")
-        for attrib in rcsb_attributes:
+        fp.write(f'"""Set of RCSB attributes as of {date}."""\n')
+        fp.write("rcsb_attr_set = (\n")
+        for attrib in rcsbsearch_attributes:
             fp.write(f'    "{attrib.attribute}",\n')
-        fp.write("]\n")
+        fp.write(")\n")
 
 
 def rcsb_query(
     query_str: str, op_str: str, val: Union[int, float, str]
 ) -> Terminal:
     """Convert query specifiers to queries."""
-    if query_str not in rcsb_attr_list:
+    if query_str not in rcsb_attributes.rcsb_attr_set:
         raise ValueError(f'Unrecognized RCSB query field "{query_str}"')
     try:
         op = OPERATOR_DICT[op_str]

@@ -1,5 +1,5 @@
-"""List of RCSB attributes as of 2022-01-26."""
-rcsb_attr_list = [
+"""Set of RCSB attributes as of 2022-01-26."""
+rcsb_attr_set = (
     "pdbx_struct_special_symmetry.PDB_model_num",
     "pdbx_struct_special_symmetry.auth_seq_id",
     "pdbx_struct_special_symmetry.id",
@@ -1792,4 +1792,4 @@ rcsb_attr_list = [
     "rcsb_uniprot_alignments.core_entity_alignments.aligned_regions.length",
     "rcsb_uniprot_alignments.core_entity_alignments.core_entity_identifiers.entry_id",
     "rcsb_uniprot_alignments.core_entity_alignments.core_entity_identifiers.entity_id",
-]
+)
