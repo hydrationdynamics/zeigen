@@ -19,11 +19,11 @@ test = ["coverage", "flake8", "pexpect", "wheel"]
 
 [[package]]
 name = "aspy.refactor-imports"
-version = "2.2.0"
+version = "2.2.1"
 description = "Utilities for refactoring imports in python-like syntax."
 category = "dev"
 optional = false
-python-versions = ">=3.6.1"
+python-versions = ">=3.7"
 
 [package.dependencies]
 cached-property = "*"
@@ -992,14 +992,14 @@ tests = ["tox", "pytest", "black (==20.8b1)", "flake8", "mypy"]
 
 [[package]]
 name = "reorder-python-imports"
-version = "2.7.0"
+version = "2.7.1"
 description = "Tool for reordering python imports"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
-"aspy.refactor-imports" = ">=2.1.0"
+"aspy.refactor-imports" = ">=2.2.1"
 
 [[package]]
 name = "requests"
@@ -1524,8 +1524,8 @@ argcomplete = [
     {file = "argcomplete-1.12.3.tar.gz", hash = "sha256:2c7dbffd8c045ea534921e63b0be6fe65e88599990d8dc408ac8c542b72a5445"},
 ]
 "aspy.refactor-imports" = [
-    {file = "aspy.refactor_imports-2.2.0-py2.py3-none-any.whl", hash = "sha256:7a18039d2e8be6b02b4791ce98891deb46b459b575c52ed35ab818c4eaa0c098"},
-    {file = "aspy.refactor_imports-2.2.0.tar.gz", hash = "sha256:78ca24122963fd258ebfc4a8dc708d23a18040ee39dca8767675821e84e9ea0a"},
+    {file = "aspy.refactor_imports-2.2.1-py2.py3-none-any.whl", hash = "sha256:ace9ca78abf6cfdd20ea1a321b75b20c8cc2c1af58aecb9dc4ba9d6f70f74645"},
+    {file = "aspy.refactor_imports-2.2.1.tar.gz", hash = "sha256:f5b2fcbf9fd68361168588f14eda64d502d029eefe632d15094cd0683ae12984"},
 ]
 astor = [
     {file = "astor-0.8.1-py2.py3-none-any.whl", hash = "sha256:070a54e890cefb5b3739d19f30f5a5ec840ffc9c50ffa7d23cc9fc1a38ebbfc5"},
@@ -2202,8 +2202,8 @@ rcsbsearch = [
     {file = "rcsbsearch-0.2.3.tar.gz", hash = "sha256:63b29e6df4809a6e47a83874cd166bd3753a0df0db96e644bebff1743c08faa8"},
 ]
 reorder-python-imports = [
-    {file = "reorder_python_imports-2.7.0-py2.py3-none-any.whl", hash = "sha256:76ac259aa8ada10808a63c6816087c84aec6334c2049a5049e80b74cac575f43"},
-    {file = "reorder_python_imports-2.7.0.tar.gz", hash = "sha256:8f6e8ea23905058f964d12a03b7dfb1227d11a877c2d1db0535039a10b568cbb"},
+    {file = "reorder_python_imports-2.7.1-py2.py3-none-any.whl", hash = "sha256:5477c008cd7a5f2dbe32a35e90d74b5a3427468731441f033034310e427143a3"},
+    {file = "reorder_python_imports-2.7.1.tar.gz", hash = "sha256:1ae34422f13f5a4b4669f340774909d721bfc0a8311973c70b3a50540b595bc5"},
 ]
 requests = [
     {file = "requests-2.27.1-py2.py3-none-any.whl", hash = "sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d"},
@@ -2221,6 +2221,10 @@ restructuredtext-lint = [
     {file = "ruamel.yaml-0.17.20.tar.gz", hash = "sha256:4b8a33c1efb2b443a93fcaafcfa4d2e445f8e8c29c528d9f5cdafb7cc9e4004c"},
 ]
 "ruamel.yaml.clib" = [
+    {file = "ruamel.yaml.clib-0.2.6-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:6e7be2c5bcb297f5b82fee9c665eb2eb7001d1050deaba8471842979293a80b0"},
+    {file = "ruamel.yaml.clib-0.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_24_x86_64.whl", hash = "sha256:221eca6f35076c6ae472a531afa1c223b9c29377e62936f61bc8e6e8bdc5f9e7"},
+    {file = "ruamel.yaml.clib-0.2.6-cp310-cp310-win32.whl", hash = "sha256:1070ba9dd7f9370d0513d649420c3b362ac2d687fe78c6e888f5b12bf8bc7bee"},
+    {file = "ruamel.yaml.clib-0.2.6-cp310-cp310-win_amd64.whl", hash = "sha256:77df077d32921ad46f34816a9a16e6356d8100374579bc35e15bab5d4e9377de"},
     {file = "ruamel.yaml.clib-0.2.6-cp35-cp35m-macosx_10_6_intel.whl", hash = "sha256:cfdb9389d888c5b74af297e51ce357b800dd844898af9d4a547ffc143fa56751"},
     {file = "ruamel.yaml.clib-0.2.6-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:7b2927e92feb51d830f531de4ccb11b320255ee95e791022555971c466af4527"},
     {file = "ruamel.yaml.clib-0.2.6-cp35-cp35m-win32.whl", hash = "sha256:ada3f400d9923a190ea8b59c8f60680c4ef8a4b0dfae134d2f2ff68429adfab5"},
