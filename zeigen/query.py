@@ -84,10 +84,15 @@ def query(
         rcsb_query(
             "rcsb_accession_info.has_released_experimental_data", "==", "Y"
         ),
+        rcsb_query(
+            "rcsb_entry_info.selected_polymer_entity_types",
+            "==",
+            "Protein (only)",
+        ),
     ]
     logger.info(
-        f"Querying RCSB for {expt_type} structures <= {resolution} Å resolution "
-        + "with structure factors."
+        f"Querying RCSB for protein {expt_type} structures <= {resolution} Å "
+        + "resolution with structure factors."
     )
     combined_query = reduce(operator.iand, query_list)
     start_time = time.time()
