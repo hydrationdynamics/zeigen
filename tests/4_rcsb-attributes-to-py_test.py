@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Tests for data ingestion."""
+"""Tests for creating list of RCSB attributes."""
 # standard library imports
 import sys
 from pathlib import Path
@@ -8,13 +8,11 @@ import pytest
 import sh
 
 from . import help_check
-from . import INPUTS
 from . import print_docstring
-from . import TOML_FILE
 
 # global constants
 zeigen = sh.Command("zeigen")
-SUBCOMMAND = "query"
+SUBCOMMAND = "rcsb-attributes-to-py"
 
 
 def test_subcommand_help():
@@ -23,14 +21,13 @@ def test_subcommand_help():
 
 
 @print_docstring()
-def test_find(datadir_mgr):
+def test_rcsb_attributes_to_py(datadir_mgr):
     """Test query of PDB."""
     with datadir_mgr.in_tmp_dir(
-        inpathlist=INPUTS,
         save_outputs=True,
         outscope="module",
     ):
-        args = ["--verbose", SUBCOMMAND, TOML_FILE]
+        args = ["--verbose", SUBCOMMAND]
         try:
             zeigen(
                 args,
@@ -38,6 +35,6 @@ def test_find(datadir_mgr):
             )
         except sh.ErrorReturnCode as errors:
             print(errors)
-            pytest.fail("find failed")
-        for filestring in ["zeigen_stats.json"]:
+            pytest.fail("rcsb-attributes-to-py failed")
+        for filestring in ["rcsb_attributes.py"]:
             assert Path(filestring).exists()

@@ -10,9 +10,9 @@ from typing import Optional
 from typing import Union
 
 from loguru import logger
-from rcsbsearch import Attr as RCSBAttr
-from rcsbsearch import rcsb_attributes
-from rcsbsearch.search import Terminal
+from rcsbsearch import Attr as RCSBAttr  # type: ignore
+from rcsbsearch import rcsb_attributes  # type: ignore
+from rcsbsearch.search import Terminal  # type: ignore
 from statsdict import Stat
 
 from .common import APP
@@ -34,8 +34,10 @@ OPERATOR_DICT = {
 
 @APP.command()
 def rcsb_attributes_to_py() -> None:
-    """Write RCSB attributes list as RCSBAttrs.py."""
-    with Path("RCSBAttrs.py").open("w") as fp:
+    """Write RCSB attributes list as python code."""
+    outfile = "rcsb_attributes.py"
+    logger.info(f'Writing RCSB attributes list to "{outfile}".')
+    with Path(outfile).open("w") as fp:
         date = datetime.date.today()
         fp.write(f'"""List of RCSB attributes as of {date}."""\n')
         fp.write("rcsb_attr_list = [\n")

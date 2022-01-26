@@ -9,7 +9,6 @@ import sh
 
 from . import help_check
 from . import INPUTS
-from . import OUTPUTS
 from . import print_docstring
 from . import TOML_FILE
 
@@ -40,5 +39,5 @@ def test_find(datadir_mgr):
         except sh.ErrorReturnCode as errors:
             print(errors)
             pytest.fail("find failed")
-        #for filestring in OUTPUTS:
-        #    assert Path(filestring).exists()
+        for filestring in ["zeigen_stats.json", "hydrated_waters.tsv"]:
+            assert Path(filestring).exists()

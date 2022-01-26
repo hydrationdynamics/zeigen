@@ -117,7 +117,7 @@ def _stderr_format_func(record: loguru.Record) -> str:
 logger.remove()
 logger.add(sys.stderr, level=STATE["log_level"], format=_stderr_format_func)
 APP = typer.Typer(help=docstring, name=NAME)
-STATS = StatsDict(logger=logger, app=APP)
+STATS = StatsDict(logger=logger, app=APP, module_name=NAME)
 # functions used in more than one module
 
 

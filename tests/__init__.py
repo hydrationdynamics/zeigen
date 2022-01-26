@@ -16,8 +16,6 @@ from sh import ErrorReturnCode
 # global constants
 TOML_FILE = "config.toml"
 INPUTS = [TOML_FILE]
-OUTPUTS = ["hydrated_waters.tsv"]
-STATS_FILE = "zeigen_stats.json"
 
 
 @contextlib.contextmanager
