@@ -11,9 +11,14 @@ from .common import NAME
 from .common import STATE
 from .find import find
 from .query import query
+from .query import rcsb_attributes_to_py
 
 # global constants
-unused_cli_funcs = (find,)  # noqa: F841
+unused_cli_funcs = (
+    find,
+    query,
+    rcsb_attributes_to_py,
+)  # noqa: F841
 VERSION: str = metadata.version(NAME)
 click_object = typer.main.get_command(APP)  # noqa: F841
 
