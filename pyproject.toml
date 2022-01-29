@@ -52,7 +52,7 @@ types-tabulate = "*"
 gemmi = "*"
 statsdict = "*"
 rcsbsearch = "*"
-dynaconf = "^3.1.7"
+dynaconf = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
