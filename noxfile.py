@@ -122,7 +122,9 @@ def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or ["zeigen"]
     session.install(".")
-    session.install("mypy", "pandas-stubs", "pytest")
+    session.install(
+        "mypy", "pandas-stubs", "pytest", "types-tabulate", "types-toml"
+    )
     session.run("mypy", *args)
     if not session.posargs:
         session.run(
@@ -136,7 +138,6 @@ def tests(session: Session) -> None:
     session.install(".")
     session.install(
         "coverage[toml]",
-        "pandas-stubs",
         "pygments",
         "pytest",
         "pytest-cov",
@@ -169,9 +170,11 @@ def typeguard(session: Session) -> None:
     session.install(
         "pandas-stubs",
         "pytest",
+        "pytest-datadir-mgr",
         "typeguard",
         "pygments",
-        "pytest-datadir-mgr",
+        "types-toml",
+        "types-tabulate",
         "sh",
     )
     session.run("pytest", f"--typeguard-packages={package}", *session.posargs)
