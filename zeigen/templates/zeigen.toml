@@ -1,0 +1,78 @@
+[query]
+subtypes = ["neutron", "xray"]
+
+[[query.extras]]
+field = "rcsb_accession_info.has_released_experimental_data"
+op_str = "=="
+val = "Y"
+
+[[query.extras]]
+field = "rcsb_entry_info.selected_polymer_entity_types"
+op_str = "=="
+val = "Protein (only)"
+
+[[query.xray]]
+field = "exptl.method"
+op_str = "=="
+val = "X-RAY DIFFRACTION"
+
+[[query.xray]]
+field = "rcsb_entry_info.diffrn_resolution_high.value"
+op_str = "<="
+val = 1.1
+
+[[query.neutron]]
+field = "exptl.method"
+op_str = "=="
+val = "NEUTRON DIFFRACTION"
+
+[[query.neutron]]
+field = "rcsb_entry_info.diffrn_resolution_high.value"
+op_str = "<="
+val = 1.5
+
+[query.report]
+exptl_crystal = [
+"density_Matthews",
+"density_percent_sol"
+]
+exptl_crystal_grow = [
+"pH"
+]
+pubmed = [
+      "rcsb_pubmed_central_id"
+]
+rcsb_entry_container_identifiers = [
+      "entry_id"
+]
+rcsb_entry_info = [
+      "deposited_atom_count",
+      "deposited_model_count",
+      "deposited_nonpolymer_entity_instance_count",
+      "deposited_polymer_entity_instance_count",
+      "deposited_polymer_monomer_count",
+      "deposited_solvent_atom_count",
+      "disulfide_bond_count",
+      "entity_count",
+      "molecular_weight",
+      "nonpolymer_entity_count",
+      "polymer_entity_count_DNA",
+      "polymer_entity_count_nucleic_acid_hybrid",
+      "polymer_entity_count_protein",
+      "polymer_entity_count_RNA",
+      "resolution_combined"
+      ]
+
+[find]
+special_point_radius = 3.0
+
+[plot]
+# See https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html
+# for an explanation of these parameters used to save the figure.
+# Some possible format values are png, pdf, svg, and eps.
+format = "png"
+dpi = 200
+facecolor = "w"
+edgecolor = "w"
+transparent = false
+pad_inches = 0.1

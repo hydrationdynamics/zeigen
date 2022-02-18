@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """Tests for input table creation."""
-# standard library imports
 import shutil
 from pathlib import Path
 
 from . import print_docstring
-
-# module imports
 
 
 @print_docstring()

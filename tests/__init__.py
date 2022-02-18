@@ -2,6 +2,7 @@
 """Base for pytest testing."""
 # standard library imports
 import contextlib
+import copy
 import functools
 import os
 from pathlib import Path
@@ -11,11 +12,7 @@ import pytest
 import sh
 from sh import ErrorReturnCode
 
-# third-party imports
-
-# global constants
-TOML_FILE = "config.toml"
-INPUTS = [TOML_FILE]
+QUERY_OUTPUTS = ["zeigen.toml", "zeigen_stats.json", "test.tsv"]
 
 
 @contextlib.contextmanager
@@ -63,12 +60,14 @@ def print_docstring() -> Callable:
     return decorator
 
 
-def run_zeigen(args, component):
+def run_zeigen(args):
     """Run zeigen with args."""
     command_string = " ".join(args)
-    print(f"Testing {component} with" + f'"svange {command_string}"')
+    environ = copy.deepcopy(os.environ)
+    environ["ZEIGEN_CONFIG_DIR"] = "."
     try:
-        sh.zeigen(args)
-    except ErrorReturnCode as errors:
+        output = sh.zeigen(args, _env=environ)
+    except sh.ErrorReturnCode as errors:
         print(errors)
-        pytest.fail(f"{component} failed")
+        pytest.fail(f"zeigen {command_string} failed")
+    return output

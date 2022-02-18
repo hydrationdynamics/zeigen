@@ -1,19 +1,13 @@
 # -*- coding: utf-8 -*-
 """Tests for data ingestion."""
 # standard library imports
-import sys
 from pathlib import Path
 
-import pytest
-import sh
-
 from . import help_check
-from . import INPUTS
 from . import print_docstring
-from . import TOML_FILE
+from . import QUERY_OUTPUTS
+from . import run_zeigen
 
-# global constants
-zeigen = sh.Command("zeigen")
 SUBCOMMAND = "query"
 
 
@@ -23,21 +17,13 @@ def test_subcommand_help():
 
 
 @print_docstring()
-def test_find(datadir_mgr):
+def test_query(datadir_mgr):
     """Test query of PDB."""
     with datadir_mgr.in_tmp_dir(
-        inpathlist=INPUTS,
         save_outputs=True,
         outscope="module",
     ):
-        args = ["--verbose", SUBCOMMAND, TOML_FILE]
-        try:
-            zeigen(
-                args,
-                _out=sys.stderr,
-            )
-        except sh.ErrorReturnCode as errors:
-            print(errors)
-            pytest.fail("find failed")
-        for filestring in ["zeigen_stats.json"]:
+        args = ["--verbose", SUBCOMMAND, "test"]
+        run_zeigen(args)
+        for filestring in QUERY_OUTPUTS:
             assert Path(filestring).exists()

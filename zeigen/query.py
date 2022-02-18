@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Optional
 from typing import Union
 
+import pandas as pd
 from loguru import logger
 from rcsbsearch import Attr as RCSBAttr  # type: ignore
 from rcsbsearch import rcsb_attributes as rcsbsearch_attributes  # type: ignore
@@ -17,10 +18,9 @@ from statsdict import Stat
 
 from . import rcsb_attributes
 from .common import APP
+from .common import NAME
 from .common import STATS
-
-# import pandas as pd
-# from .common import read_conf_file
+from .config import read_config
 
 OPERATOR_DICT = {
     "<": operator.lt,
@@ -47,60 +47,51 @@ def rcsb_attributes_to_py() -> None:
 
 
 def rcsb_query(
-    query_str: str, op_str: str, val: Union[int, float, str]
+    field: str, op_str: str, val: Union[int, float, str]
 ) -> Terminal:
     """Convert query specifiers to queries."""
-    if query_str not in rcsb_attributes.rcsb_attr_set:
-        raise ValueError(f'Unrecognized RCSB query field "{query_str}"')
+    if field not in rcsb_attributes.rcsb_attr_set:
+        raise ValueError(f'Unrecognized RCSB field "{field}"')
     try:
         op = OPERATOR_DICT[op_str]
     except KeyError:
         raise ValueError(
             f'Unrecognized RCSB operator string "{op_str}"'
         ) from None
-    return op(RCSBAttr(query_str), val)
+    return op(RCSBAttr(field), val)
 
 
 @APP.command()
 @STATS.auto_save_and_report
 def query(
-    toml_file: Path,
-    neutron: Optional[bool] = False,
+    set_name: str,
+    neutron_only: Optional[bool] = False,
 ) -> None:
-    """Query PDB for X-ray or neutron structures."""
-    if not neutron:
-        expt_type = "xray"
-        method = "X-RAY DIFFRACTION"
-        resolution = 1.1
+    """Query PDB for structures as defined in config file."""
+    config = read_config(NAME)
+    extra_queries = [rcsb_query(**e) for e in config.query.extras]
+    if neutron_only:
+        subtypes = ["neutron"]
     else:
-        expt_type = "neutron"
-        method = "NEUTRON DIFFRACTION"
-        resolution = 1.5
-    query_list = [
-        rcsb_query("exptl.method", "==", method),
-        rcsb_query(
-            "rcsb_entry_info.diffrn_resolution_high.value", "<=", resolution
-        ),
-        rcsb_query(
-            "rcsb_accession_info.has_released_experimental_data", "==", "Y"
-        ),
-        rcsb_query(
-            "rcsb_entry_info.selected_polymer_entity_types",
-            "==",
-            "Protein (only)",
-        ),
-    ]
-    logger.info(
-        f"Querying RCSB for protein {expt_type} structures <= {resolution} Å "
-        + "resolution with structure factors."
-    )
-    combined_query = reduce(operator.iand, query_list)
-    start_time = time.time()
-    results = list(combined_query())
-    n_results = len(results)
-    elapsed_time = round(time.time() - start_time, 1)
-    logger.info(
-        f"RCSB returned {n_results} {expt_type} structures in {elapsed_time} s."
-    )
-    STATS[f"{expt_type}_structures"] = Stat(n_results)
-    STATS[f"{expt_type}_min_resolution"] = Stat(resolution, units="Å")
+        subtypes = config.query.subtypes
+    all_keys = []
+    all_types = []
+    for subtype in subtypes:
+        query_list = [
+            rcsb_query(**e) for e in config.query[subtype]
+        ] + extra_queries
+        combined_query = reduce(operator.iand, query_list)
+        start_time = time.time()
+        results = list(combined_query())
+        n_results = len(results)
+        elapsed_time = round(time.time() - start_time, 1)
+        logger.info(
+            f"RCSB returned {n_results} {subtype} structures in {elapsed_time} s."
+        )
+        STATS[f"{subtype}_structures"] = Stat(n_results)
+        all_keys += results
+        all_types += [subtype] * n_results
+    STATS["total_structures"] = Stat(len(all_keys))
+    df = pd.DataFrame(index=all_keys, data={"type": all_types})
+    df.index.name = "PDB"
+    df.to_csv(set_name + ".tsv", sep="\t")
