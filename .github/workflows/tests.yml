@@ -125,8 +125,6 @@ jobs:
 
       - name: Combine coverage data and display human readable report
         run: |
-          pwd
-          ls -a
           nox --force-color --session=coverage
 
       - name: Create coverage report
