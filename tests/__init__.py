@@ -12,7 +12,8 @@ import pytest
 import sh
 from sh import ErrorReturnCode
 
-QUERY_OUTPUTS = ["zeigen.toml", "zeigen_stats.json", "test.tsv"]
+STATSFILE = "zeigen_stats.json"
+QUERY_OUTPUTS = ["zeigen.toml", STATSFILE, "test.tsv"]
 
 
 @contextlib.contextmanager

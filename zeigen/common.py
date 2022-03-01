@@ -18,6 +18,8 @@ DEFAULT_STDERR_LOG_LEVEL = "INFO"
 NO_LEVEL_BELOW = 30  # Don't print level for messages below this level
 NAME = "zeigen"
 
+RCSB_DATA_GRAPHQL_URL = "https://data.rcsb.org/graphql"
+
 
 class GlobalState(TypedDict):
     """Dictionary of global state variables."""

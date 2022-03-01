@@ -55,8 +55,10 @@ Zeigen: Find Hydrated Waters
 
 Features
 --------
-
-* Finds protonated waters in atomic-resolution structures
+Zeigen implements a query of the PDB, with download of metadata.  The query is highly
+configurable through the `zeigen.conf` configuration file that is placed in a
+system-dependent config directory upon first program run.  The query results are
+placed in a TSV file, with global stats to a JSON file.
 
 
 Requirements

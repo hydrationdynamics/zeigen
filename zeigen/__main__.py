@@ -12,11 +12,13 @@ from .common import STATE
 from .find import find
 from .query import query
 from .query import rcsb_attributes_to_py
+from .query import rcsb_metadata
 
 # global constants
 unused_cli_funcs = (
     find,
     query,
+    rcsb_metadata,
     rcsb_attributes_to_py,
 )  # noqa: F841
 VERSION: str = metadata.version(NAME)

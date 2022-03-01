@@ -11,57 +11,88 @@ field = "rcsb_entry_info.selected_polymer_entity_types"
 op_str = "=="
 val = "Protein (only)"
 
-[[query.xray]]
+[query.xray]
+resolution = 1.1
+label = "X-ray"
+
+[[query.xray.extras]]
 field = "exptl.method"
 op_str = "=="
 val = "X-RAY DIFFRACTION"
 
-[[query.xray]]
-field = "rcsb_entry_info.diffrn_resolution_high.value"
-op_str = "<="
-val = 1.1
+[query.neutron]
+resolution = 1.5
+label = "neutron"
 
-[[query.neutron]]
+[[query.neutron.extras]]
 field = "exptl.method"
 op_str = "=="
 val = "NEUTRON DIFFRACTION"
 
-[[query.neutron]]
-field = "rcsb_entry_info.diffrn_resolution_high.value"
-op_str = "<="
-val = 1.5
+[metadata]
+unpack_lists = true
+delete_unknown_fields = true
 
-[query.report]
-exptl_crystal = [
-"density_Matthews",
-"density_percent_sol"
-]
-exptl_crystal_grow = [
-"pH"
-]
-pubmed = [
-      "rcsb_pubmed_central_id"
-]
-rcsb_entry_container_identifiers = [
-      "entry_id"
-]
-rcsb_entry_info = [
-      "deposited_atom_count",
-      "deposited_model_count",
-      "deposited_nonpolymer_entity_instance_count",
-      "deposited_polymer_entity_instance_count",
-      "deposited_polymer_monomer_count",
-      "deposited_solvent_atom_count",
-      "disulfide_bond_count",
-      "entity_count",
-      "molecular_weight",
-      "nonpolymer_entity_count",
-      "polymer_entity_count_DNA",
-      "polymer_entity_count_nucleic_acid_hybrid",
-      "polymer_entity_count_protein",
-      "polymer_entity_count_RNA",
-      "resolution_combined"
-      ]
+# Order of the extras will be the column order
+[[metadata.extras]]
+field = "rcsb_entry_info.molecular_weight"
+type = "float"
+name = "mass, kDa"
+
+[[metadata.extras]]
+field = "rcsb_entry_info.deposited_atom_count"
+type = "int"
+name = "atoms"
+
+[[metadata.extras]]
+field = "rcsb_entry_info.deposited_solvent_atom_count"
+type = "int"
+name = "solv_atoms"
+
+[[metadata.extras]]
+field = "exptl_crystal.density_percent_sol"
+type = "float"
+name = "solv_pct"
+
+[[metadata.extras]]
+field = "exptl_crystal.density_Matthews"
+type = "float"
+name = "d_Matthews"
+
+[[metadata.extras]]
+field = "rcsb_entry_info.entity_count"
+type = "int"
+name = "entities"
+
+[[metadata.extras]]
+field = "rcsb_entry_info.polymer_entity_count_protein"
+type = "int"
+name = "proteins"
+
+[[metadata.extras]]
+field = "rcsb_entry_info.deposited_model_count"
+type = "int"
+name = "models"
+
+[[metadata.extras]]
+field = "rcsb_entry_info.deposited_polymer_monomer_count"
+type = "int"
+name = "monomers"
+
+[[metadata.extras]]
+field = "rcsb_entry_info.deposited_nonpolymer_entity_instance_count"
+type = "int"
+name = "nonpolymer_instances"
+
+[[metadata.extras]]
+field = "rcsb_entry_info.nonpolymer_entity_count"
+type = "int"
+name = "nonpolymer_entities"
+
+[[metadata.extras]]
+field = "exptl_crystal_grow.pH"
+type = "float"
+name = "pH"
 
 [find]
 special_point_radius = 3.0
