@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zeigen"
-version = "0.1.0"
+version = "0.1.1"
 description = "Find hydrated waters in atomic-resolution crystal structures"
 authors = ["Joel Berendzen <joel@generisbio.com>"]
 license = "BSD-3-Clause"
@@ -54,6 +54,7 @@ dynaconf = ">=3.1.7"
 tqdm = ">=4.62.3"
 gql = {extras = ["all"], version = ">=3.0.0"}
 dotli = ">=1.1"
+biopython = ">=1.79"
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"

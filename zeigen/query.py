@@ -11,9 +11,13 @@ from typing import Any
 from typing import Dict
 from typing import List
 from typing import Optional
+from typing import Tuple
 from typing import Union
 
 import pandas as pd
+from Bio.Seq import Seq  # type: ignore
+from Bio import SeqIO  # type: ignore
+from Bio.SeqRecord import SeqRecord  # type: ignore
 from dotli import Dotli  # type: ignore
 from gql import Client
 from gql import gql
@@ -40,18 +44,18 @@ OPERATOR_DICT = {
     ">": operator.gt,
 }
 RESOLUTION_FIELD = "rcsb_entry_info.diffrn_resolution_high.value"
-CONFIG = read_config(NAME)
-
-
 ID_FIELD = "rcsb_id"
 ID_FIELD_LEN = 4
 RESOLUTION_FIELD = "rcsb_entry_info.diffrn_resolution_high.value"
 RESOLUTION_LABEL = "resolution, Å"
+SEQ_FIELD = "polymer_entities.entity_poly.pdbx_seq_one_letter_code_can"
 FIXED_METADATA = [
     {"field": ID_FIELD, "type": "str", "name": "rcsb_id"},
     {"field": RESOLUTION_FIELD, "type": "float", "name": RESOLUTION_LABEL},
+    {"field": SEQ_FIELD, "type": "seq", "name": "seq"}
 ]
-
+METADATA_TIMEOUT = 120
+CONFIG = read_config(NAME)
 
 @APP.command()
 def rcsb_attributes_to_py() -> None:
@@ -110,7 +114,6 @@ def construct_rcsb_data_query(id_list: List[str], fields: List[str]) -> str:
 }}"""
     return query_str
 
-
 def delist_single_lists(uglyiter: Dict[str, Any]) -> Dict[str, Any]:
     """Change single-item lists into the items they contain."""
     cleaned = uglyiter.copy()
@@ -127,8 +130,8 @@ def delist_single_lists(uglyiter: Dict[str, Any]) -> Dict[str, Any]:
 @APP.command()
 def rcsb_metadata(
     id_list: List[str], show_frame: Optional[bool] = False
-) -> pd.DataFrame:
-    """Query the RCSB GraphQL endpoint.
+) -> Tuple[pd.DataFrame, List[Any]]:
+    """Query the RCSB GraphQL endpoint for metadata.
 
     Example:
         rcsb_metadata 1STP 2JEF
@@ -137,7 +140,9 @@ def rcsb_metadata(
     # Do asynchronous I/O to RCSB.
     transport = AIOHTTPTransport(url=RCSB_DATA_GRAPHQL_URL)
     # Create a GraphQL client.
-    client = Client(transport=transport, fetch_schema_from_transport=True)
+    client = Client(transport=transport,
+                    fetch_schema_from_transport=True,
+                    execute_timeout=METADATA_TIMEOUT)
     # Construct the query from a query string.
     metadata_list = FIXED_METADATA + myconfig.extras
     query_fields = [f["field"] for f in metadata_list]
@@ -179,6 +184,17 @@ def rcsb_metadata(
     df = pd.DataFrame.from_dict(results)
     df = df.set_index(ID_FIELD)
     df = df.rename(columns={f["field"]: f["name"] for f in metadata_list})
+    seq_list = []
+    has_seq = []
+    for id, seq  in df["seq"].iteritems():
+        if pd.isnull(seq):
+            logger.warning(f"entry {id} has no sequence record")
+            has_seq.append(False)
+        else:
+            seq_list.append(SeqRecord(Seq(seq), id))
+            has_seq.append(True)
+    del df["seq"]
+    df["has_seq"] = has_seq
     if myconfig.delete_unknown_fields:
         # order output columns in order in extras
         col_order = [
@@ -187,7 +203,7 @@ def rcsb_metadata(
         df = df[col_order]
     if show_frame:
         print(df)
-    return df
+    return df, seq_list
 
 
 @APP.command()
@@ -223,7 +239,7 @@ def query(
         results = list(combined_query().iquery())
         n_results = len(results)
         if not query_only:
-            category_frame = rcsb_metadata(results)
+            category_frame, seqs = rcsb_metadata(results)
             category_frame["category"] = label
             metadata_frames.append(category_frame)
         elapsed_time = round(time.time() - start_time, 1)
@@ -244,3 +260,7 @@ def query(
             len(df.columns), desc="# of metadata fields"
         )
         df.to_csv(set_name + ".tsv", sep="\t")
+        STATS["missing_seqs"] = Stat(
+            len(df) - len(seqs), desc="# of RCSB entries w/o sequence"
+        )
+        SeqIO.write(seqs, set_name + ".fa", "fasta")

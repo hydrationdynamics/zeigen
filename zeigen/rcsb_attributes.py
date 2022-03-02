@@ -1151,7 +1151,7 @@ rcsb_attr_set = (
     "entity_poly.nstd_linkage",
     "entity_poly.nstd_monomer",
     "entity_poly.pdbx_seq_one_letter_code",
-    "entity_poly.pdbx_seq_one_letter_code_can",
+    "polymer_entities.entity_poly.pdbx_seq_one_letter_code_can",
     "entity_poly.pdbx_strand_id",
     "entity_poly.pdbx_target_identifier",
     "entity_poly.rcsb_artifact_monomer_count",
