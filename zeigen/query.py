@@ -15,8 +15,8 @@ from typing import Tuple
 from typing import Union
 
 import pandas as pd
-from Bio.Seq import Seq  # type: ignore
 from Bio import SeqIO  # type: ignore
+from Bio.Seq import Seq  # type: ignore
 from Bio.SeqRecord import SeqRecord  # type: ignore
 from dotli import Dotli  # type: ignore
 from gql import Client
@@ -52,10 +52,11 @@ SEQ_FIELD = "polymer_entities.entity_poly.pdbx_seq_one_letter_code_can"
 FIXED_METADATA = [
     {"field": ID_FIELD, "type": "str", "name": "rcsb_id"},
     {"field": RESOLUTION_FIELD, "type": "float", "name": RESOLUTION_LABEL},
-    {"field": SEQ_FIELD, "type": "seq", "name": "seq"}
+    {"field": SEQ_FIELD, "type": "seq", "name": "seq"},
 ]
 METADATA_TIMEOUT = 120
 CONFIG = read_config(NAME)
+
 
 @APP.command()
 def rcsb_attributes_to_py() -> None:
@@ -86,12 +87,13 @@ def rcsb_search_query(
     return op(RCSBAttr(field), val)
 
 
-def construct_rcsb_data_query(id_list: List[str], fields: List[str]) -> str:
-    """Construct an RCSB GraphQL data query JSON object.
+def construct_rcsb_structure_query(
+    id_list: List[str], fields: List[str]
+) -> str:
+    """Construct an GraphQL query string for RCSB structure fields.
 
-    We use the flattened field names from rcsbsearch in
-    dot-separated form for input because they are much
-    easier to specify and check.
+    We use the flattened field names from rcsbsearch in dot-separated form
+    for input because they are much easier to specify and check.
     """
     for field in fields:
         if field not in rcsb_attributes.rcsb_attr_set:
@@ -114,6 +116,7 @@ def construct_rcsb_data_query(id_list: List[str], fields: List[str]) -> str:
 }}"""
     return query_str
 
+
 def delist_single_lists(uglyiter: Dict[str, Any]) -> Dict[str, Any]:
     """Change single-item lists into the items they contain."""
     cleaned = uglyiter.copy()
@@ -125,6 +128,17 @@ def delist_single_lists(uglyiter: Dict[str, Any]) -> Dict[str, Any]:
             else:
                 cleaned[k] = singleitem
     return cleaned
+
+
+def delete_unknown_fields(
+    rawdict: Dict[str, Any], known_fields: List[str]
+) -> Dict[str, Any]:
+    """Delete any entries with key not known, flat dict only."""
+    unfulfilled = [k for k in rawdict.keys() if k not in known_fields]
+    for item in unfulfilled:
+        logger.info(f"deleting unfulfilled key {item} in {rawdict[ID_FIELD]}")
+        del rawdict[item]
+    return rawdict
 
 
 @APP.command()
@@ -140,13 +154,15 @@ def rcsb_metadata(
     # Do asynchronous I/O to RCSB.
     transport = AIOHTTPTransport(url=RCSB_DATA_GRAPHQL_URL)
     # Create a GraphQL client.
-    client = Client(transport=transport,
-                    fetch_schema_from_transport=True,
-                    execute_timeout=METADATA_TIMEOUT)
+    client = Client(
+        transport=transport,
+        fetch_schema_from_transport=True,
+        execute_timeout=METADATA_TIMEOUT,
+    )
     # Construct the query from a query string.
     metadata_list = FIXED_METADATA + myconfig.extras
     query_fields = [f["field"] for f in metadata_list]
-    query_str = construct_rcsb_data_query(id_list, query_fields)
+    query_str = construct_rcsb_structure_query(id_list, query_fields)
     logger.debug(f"GraphQL query={query_str}")
     query = gql(query_str)
     # Execute the query.
@@ -170,23 +186,14 @@ def rcsb_metadata(
         # itself.  Deleting all unknown fields
         # prevents putting parents in the output
         # table.
-        for pos, entry in enumerate(results):
-            unfulfilled = []
-            for k in entry.keys():
-                if k not in query_fields:
-                    logger.debug(
-                        f"deleting unfulfilled key {k} in {entry[ID_FIELD]}"
-                    )
-                    unfulfilled.append(k)
-            for item in unfulfilled:
-                del results[pos][item]
+        results = [delete_unknown_fields(e, query_fields) for e in results]
     # Now create a data frame from the list of result dictionaries.
     df = pd.DataFrame.from_dict(results)
     df = df.set_index(ID_FIELD)
     df = df.rename(columns={f["field"]: f["name"] for f in metadata_list})
     seq_list = []
     has_seq = []
-    for id, seq  in df["seq"].iteritems():
+    for id, seq in df["seq"].iteritems():
         if pd.isnull(seq):
             logger.warning(f"entry {id} has no sequence record")
             has_seq.append(False)
