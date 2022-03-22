@@ -141,6 +141,21 @@ def delete_unknown_fields(
     return rawdict
 
 
+def delete_item_0(rawdict: Dict[str, Any]) -> Dict[str, Any]:
+    """Delete any '.0' from any key."""
+    contains_zero = [k for k in rawdict.keys() if ".0" in k]
+    contains_nontrivial_internal_list = [
+        k for k in rawdict.keys() if ".1." in k
+    ]
+    for key in contains_zero:
+        new_key = key.replace(".0", "")
+        rawdict[new_key] = rawdict[key]
+        del rawdict[key]
+    for key in contains_nontrivial_internal_list:
+        logger.warning(f"Non-trivial internal list element {key}")
+    return rawdict
+
+
 @APP.command()
 def rcsb_metadata(
     id_list: List[str], show_frame: Optional[bool] = False
@@ -167,7 +182,7 @@ def rcsb_metadata(
     query = gql(query_str)
     # Execute the query.
     results = client.execute(query)["entries"]
-    logger.debug(f"raw query results={results}")
+    logger.info(f"raw query results={results}")
     if myconfig.unpack_lists:
         # RCSB's GraphQL returns a rather complex object
         # with lists consisting of one dictionary in many cases.
@@ -176,9 +191,11 @@ def rcsb_metadata(
         # a bunch of fields including ".0." upon flattening
         # which will get deleted later by default.
         results = [delist_single_lists(e) for e in results]
-        logger.debug(f"after fixing lists, results = {results}")
+        logger.info(f"after fixing lists, results = {results}")
     flattener = Dotli().flatten
     results = [flattener(e) for e in results]
+    results = [delete_item_0(e) for e in results]
+    logger.info(f"flattened results={results}")
     if myconfig.delete_unknown_fields:
         # If a query field returns "none" and it is
         # the only field in that query category,
