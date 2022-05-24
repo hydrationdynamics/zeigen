@@ -10,8 +10,8 @@ from .common import APP
 from .common import NAME
 from .common import STATE
 from .find import find
+from .query import print_rcsb_attributes
 from .query import query
-from .query import rcsb_attributes_to_py
 from .query import rcsb_metadata
 
 # global constants
@@ -19,7 +19,7 @@ unused_cli_funcs = (
     find,
     query,
     rcsb_metadata,
-    rcsb_attributes_to_py,
+    print_rcsb_attributes,
 )  # noqa: F841
 VERSION: str = metadata.version(NAME)
 click_object = typer.main.get_command(APP)  # noqa: F841

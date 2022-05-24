@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 """Query PDB for structures."""
 # standard library imports
-import datetime
 import json
 import operator
 import time
+from copy import deepcopy
 from functools import reduce
-from pathlib import Path
+from itertools import product as iproduct
 from typing import Any
 from typing import Dict
+from typing import Iterator
 from typing import List
 from typing import Optional
 from typing import Tuple
@@ -24,17 +25,17 @@ from gql import gql
 from gql.transport.aiohttp import AIOHTTPTransport
 from loguru import logger
 from rcsbsearch import Attr as RCSBAttr  # type: ignore
-from rcsbsearch import rcsb_attributes as rcsbsearch_attributes  # type: ignore
+from rcsbsearch import rcsb_attributes  # type: ignore
 from rcsbsearch.search import Terminal  # type: ignore
-from statsdict import Stat
+from statsdict import Stat  # type: ignore
 
-from . import rcsb_attributes
 from .common import APP
 from .common import NAME
 from .common import RCSB_DATA_GRAPHQL_URL
 from .common import STATS
 from .config import read_config
 
+RCSB_ATTRIBUTES = [a.attribute for a in rcsb_attributes]
 OPERATOR_DICT = {
     "<": operator.lt,
     "<=": operator.le,
@@ -43,41 +44,43 @@ OPERATOR_DICT = {
     ">=": operator.ge,
     ">": operator.gt,
 }
-RESOLUTION_FIELD = "rcsb_entry_info.diffrn_resolution_high.value"
 ID_FIELD = "rcsb_id"
 ID_FIELD_LEN = 4
+SUB_FIELD = "sub"
 RESOLUTION_FIELD = "rcsb_entry_info.diffrn_resolution_high.value"
 RESOLUTION_LABEL = "resolution, Å"
 SEQ_FIELD = "polymer_entities.entity_poly.pdbx_seq_one_letter_code_can"
+NAME_FIELD = "polymer_entities.rcsb_polymer_entity.pdbx_description"
 FIXED_METADATA = [
     {"field": ID_FIELD, "type": "str", "name": "rcsb_id"},
     {"field": RESOLUTION_FIELD, "type": "float", "name": RESOLUTION_LABEL},
     {"field": SEQ_FIELD, "type": "seq", "name": "seq"},
+    {"field": NAME_FIELD, "type": "str", "name": "macromolecule"},
 ]
 METADATA_TIMEOUT = 120
 CONFIG = read_config(NAME)
 
 
 @APP.command()
-def rcsb_attributes_to_py() -> None:
-    """Write RCSB attributes list as python code."""
-    outfile = "rcsb_attributes.py"
-    logger.info(f'Writing RCSB attributes list to "{outfile}".')
-    with Path(outfile).open("w") as fp:
-        date = datetime.date.today()
-        fp.write(f'"""Set of RCSB attributes as of {date}."""\n')
-        fp.write("rcsb_attr_set = (\n")
-        for attrib in rcsbsearch_attributes:
-            fp.write(f'    "{attrib.attribute}",\n')
-        fp.write(")\n")
+def print_rcsb_attributes() -> None:
+    """Print RCSB attributes list."""
+    for attrib in RCSB_ATTRIBUTES:
+        print(f"{attrib}")
+
+
+def check_against_rcsb_attributes(field: str) -> None:
+    """Raise Value Error if field is not a known RCSB attribute."""
+    for sub_attr in RCSB_ATTRIBUTES:
+        if sub_attr in field:
+            return
+    raise ValueError(f'Unrecognized RCSB field "{field}"')
 
 
 def rcsb_search_query(
     field: str, op_str: str, val: Union[int, float, str]
 ) -> Terminal:
     """Convert query specifiers to queries."""
-    if field not in rcsb_attributes.rcsb_attr_set:
-        raise ValueError(f'Unrecognized RCSB field "{field}"')
+    check_against_rcsb_attributes(field)
     try:
         op = OPERATOR_DICT[op_str]
     except KeyError:
@@ -96,10 +99,7 @@ def construct_rcsb_structure_query(
     for input because they are much easier to specify and check.
     """
     for field in fields:
-        if field not in rcsb_attributes.rcsb_attr_set:
-            raise ValueError(
-                f'Unrecognized RCSB attribute "{field}"'
-            ) from None
+        check_against_rcsb_attributes(field)
     unflattener = Dotli().unflatten
     fixed_query_dict = unflattener(dict.fromkeys(fields, 0))
     fixed_query_str = json.dumps(fixed_query_dict, indent=1)
@@ -117,43 +117,72 @@ def construct_rcsb_structure_query(
     return query_str
 
 
-def delist_single_lists(uglyiter: Dict[str, Any]) -> Dict[str, Any]:
-    """Change single-item lists into the items they contain."""
-    cleaned = uglyiter.copy()
-    for k, v in cleaned.items():
-        if isinstance(v, list) and len(v) == 1:
-            singleitem = v[0]
-            if isinstance(singleitem, dict):
-                cleaned[k] = delist_single_lists(singleitem)
-            else:
-                cleaned[k] = singleitem
-    return cleaned
+def yield_nested_lists(
+    d: Dict[str, Any], prefix: Union[List[str], None] = None
+) -> Iterator[Tuple[List[str], Any]]:
+    """Recursively yield all lists in a nested dictionary."""
+    if prefix is None:
+        prefix = []
+    for k, v in d.items():
+        if isinstance(v, dict):
+            yield from yield_nested_lists(v, prefix + [k])
+        elif type(v) is list:
+            yield (prefix + [k], v)
+            for i in v:
+                if type(i) is dict:
+                    yield from yield_nested_lists(i, prefix + [k])
+
+
+def set_nested(
+    d: Dict[str, Any], keys: List[str], value: Any
+) -> Dict[str, Any]:
+    """Set a value in a nested dictionary using a list of keys."""
+    for key in keys[:-1]:
+        d = d.setdefault(key, {})
+    d[keys[-1]] = value
+    return d
+
+
+def delist_responses(
+    responses: Tuple[Dict[str, Any], ...]
+) -> List[Dict[str, Any]]:
+    """Replace lists inside query with iteration over values."""
+    out_list = []
+    for response in responses:
+        list_kvs = list(yield_nested_lists(response))
+        if len(list_kvs) == 0:  # no lists contained
+            out_list.append(deepcopy(response))
+        else:
+            list_keys = [k for k, v in list_kvs]
+            for sub, val_tuple in enumerate(
+                iproduct(*[v for k, v in list_kvs])
+            ):
+                new_response = deepcopy(response)
+                new_response[SUB_FIELD] = sub
+                [
+                    set_nested(new_response, key, val_tuple[i])
+                    for i, key in enumerate(list_keys)
+                ]
+                out_list.append(new_response)
+    return out_list
 
 
 def delete_unknown_fields(
     rawdict: Dict[str, Any], known_fields: List[str]
 ) -> Dict[str, Any]:
     """Delete any entries with key not known, flat dict only."""
-    unfulfilled = [k for k in rawdict.keys() if k not in known_fields]
-    for item in unfulfilled:
-        logger.info(f"deleting unfulfilled key {item} in {rawdict[ID_FIELD]}")
+    unknown = [k for k in rawdict.keys() if k not in known_fields]
+    for item in unknown:
+        logger.debug(f"deleting unknown key {item} in {rawdict[ID_FIELD]}")
         del rawdict[item]
     return rawdict
 
 
-def delete_item_0(rawdict: Dict[str, Any]) -> Dict[str, Any]:
-    """Delete any '.0' from any key."""
-    contains_zero = [k for k in rawdict.keys() if ".0" in k]
-    contains_nontrivial_internal_list = [
-        k for k in rawdict.keys() if ".1." in k
-    ]
-    for key in contains_zero:
-        new_key = key.replace(".0", "")
-        rawdict[new_key] = rawdict[key]
-        del rawdict[key]
-    for key in contains_nontrivial_internal_list:
-        logger.warning(f"Non-trivial internal list element {key}")
-    return rawdict
+def unify_id(id: str, sub_id: str) -> str:
+    """Make concatenated ID and sub ID, if subID exists."""
+    if pd.isnull(sub_id):
+        return id
+    return f"{id}.{int(sub_id)}"
 
 
 @APP.command()
@@ -177,25 +206,20 @@ def rcsb_metadata(
     # Construct the query from a query string.
     metadata_list = FIXED_METADATA + myconfig.extras
     query_fields = [f["field"] for f in metadata_list]
+    result_fields = query_fields + [SUB_FIELD]
     query_str = construct_rcsb_structure_query(id_list, query_fields)
     logger.debug(f"GraphQL query={query_str}")
     query = gql(query_str)
     # Execute the query.
-    results = client.execute(query)["entries"]
-    logger.info(f"raw query results={results}")
-    if myconfig.unpack_lists:
-        # RCSB's GraphQL returns a rather complex object
-        # with lists consisting of one dictionary in many cases.
-        # If "unpack_lists" is set, these one-dict lists will
-        # be converted to dicts.  Without this, you will get
-        # a bunch of fields including ".0." upon flattening
-        # which will get deleted later by default.
-        results = [delist_single_lists(e) for e in results]
-        logger.info(f"after fixing lists, results = {results}")
+    responses = client.execute(query)["entries"]
+    # RCSB's GraphQL returns a rather complex object
+    # with both trivial (one per entry) and non-trivial
+    # lists (e.g., multiple sequences) to be interated
+    # over.  One response may turn into more than one
+    # result.
+    results = delist_responses(responses)
     flattener = Dotli().flatten
     results = [flattener(e) for e in results]
-    results = [delete_item_0(e) for e in results]
-    logger.info(f"flattened results={results}")
     if myconfig.delete_unknown_fields:
         # If a query field returns "none" and it is
         # the only field in that query category,
@@ -203,25 +227,22 @@ def rcsb_metadata(
         # itself.  Deleting all unknown fields
         # prevents putting parents in the output
         # table.
-        results = [delete_unknown_fields(e, query_fields) for e in results]
+        results = [delete_unknown_fields(e, result_fields) for e in results]
     # Now create a data frame from the list of result dictionaries.
-    df = pd.DataFrame.from_dict(results)
-    df = df.set_index(ID_FIELD)
+    df = pd.DataFrame.from_dict(results)  # type:ignore
+    seq_list = [
+        SeqRecord(Seq(seq), unify_id(id, sub), description=desc)
+        for seq, id, sub, desc in zip(
+            df[SEQ_FIELD], df[ID_FIELD], df[SUB_FIELD], df[NAME_FIELD]
+        )
+        if pd.notnull(seq)
+    ]
+    df["has_seq"] = [pd.notnull(seq) for seq in df[SEQ_FIELD]]
     df = df.rename(columns={f["field"]: f["name"] for f in metadata_list})
-    seq_list = []
-    has_seq = []
-    for id, seq in df["seq"].iteritems():
-        if pd.isnull(seq):
-            logger.warning(f"entry {id} has no sequence record")
-            has_seq.append(False)
-        else:
-            seq_list.append(SeqRecord(Seq(seq), id))
-            has_seq.append(True)
     del df["seq"]
-    df["has_seq"] = has_seq
     if myconfig.delete_unknown_fields:
         # order output columns in order in extras
-        col_order = [
+        col_order = [SUB_FIELD] + [
             f["name"] for f in metadata_list if f["name"] in df.columns
         ]
         df = df[col_order]

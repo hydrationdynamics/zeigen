@@ -30,7 +30,6 @@ op_str = "=="
 val = "NEUTRON DIFFRACTION"
 
 [metadata]
-unpack_lists = true
 delete_unknown_fields = true
 
 # Order of the extras will be the column order
@@ -93,6 +92,11 @@ name = "nonpolymer_entities"
 field = "exptl_crystal_grow.pH"
 type = "float"
 name = "pH"
+
+[[metadata.extras]]
+field = "struct.title"
+type = "str"
+name = "title"
 
 [find]
 special_point_radius = 3.0
