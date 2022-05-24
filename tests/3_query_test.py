@@ -156,7 +156,7 @@ def test_delist_responses():
                 f"Example {example['name']} returned {len(delisted_responses)},"
                 f" should have returned {example['count']}"
             ) from None
-    all_delisted = delist_responses(all_responses)
+    all_delisted = delist_responses(tuple(all_responses))
     print(f"   all examples returned {len(all_delisted)} responses\n")
     assert len(all_delisted) == total_responses
 
