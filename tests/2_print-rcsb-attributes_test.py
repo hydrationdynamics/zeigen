@@ -16,7 +16,7 @@ TEST_ATTRIBUTES = [
     "rcsb_polymer_entity.pdbx_description",
     "rcsb_uniprot_alignments.core_entity_alignments.core_entity_identifiers.entity_id",
 ]
-KNOWN_ATTRIBUTES = 1792
+KNOWN_ATTRIBUTES = 1645
 
 
 def test_subcommand_help():

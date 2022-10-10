@@ -49,12 +49,12 @@ tabulate = ">=0.8.9"
 toml = ">=0.10.2"
 uncertainties = ">=3.1.6"
 typer = ">=0.4.0"
-rcsbsearch = ">=0.2.3"
 dynaconf = ">=3.1.7"
 tqdm = ">=4.62.3"
 gql = {extras = ["all"], version = ">=3.0.0"}
 dotli = ">=1.1"
 biopython = ">=1.79"
+rcsbsearch = {git = "https://github.com/hydrationdynamics/rcsbsearch.git", branch="master" }
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"
