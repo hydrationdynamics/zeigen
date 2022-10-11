@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Global constants and shared functions in common."""
 # standard library imports
 from __future__ import annotations

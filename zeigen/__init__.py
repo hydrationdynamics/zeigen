@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Zeigen -- find protonated waters in structures.
 
 \b

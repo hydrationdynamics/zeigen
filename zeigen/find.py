@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Find hydrated waters in structure."""
 import pandas as pd
 from loguru import logger

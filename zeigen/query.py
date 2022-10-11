@@ -1,18 +1,14 @@
-# -*- coding: utf-8 -*-
 """Query PDB for structures."""
 # standard library imports
 import json
 import operator
 import time
+from collections.abc import Iterator
 from copy import deepcopy
 from functools import reduce
 from itertools import product as iproduct
 from typing import Any
-from typing import Dict
-from typing import Iterator
-from typing import List
 from typing import Optional
-from typing import Tuple
 from typing import Union
 
 import pandas as pd
@@ -91,7 +87,7 @@ def rcsb_search_query(
 
 
 def construct_rcsb_structure_query(
-    id_list: List[str], fields: List[str]
+    id_list: list[str], fields: list[str]
 ) -> str:
     """Construct an GraphQL query string for RCSB structure fields.
 
@@ -118,8 +114,8 @@ def construct_rcsb_structure_query(
 
 
 def yield_nested_lists(
-    d: Dict[str, Any], prefix: Union[List[str], None] = None
-) -> Iterator[Tuple[List[str], Any]]:
+    d: dict[str, Any], prefix: Union[list[str], None] = None
+) -> Iterator[tuple[list[str], Any]]:
     """Recursively yield all lists in a nested dictionary."""
     if prefix is None:
         prefix = []
@@ -134,8 +130,8 @@ def yield_nested_lists(
 
 
 def set_nested(
-    d: Dict[str, Any], keys: List[str], value: Any
-) -> Dict[str, Any]:
+    d: dict[str, Any], keys: list[str], value: Any
+) -> dict[str, Any]:
     """Set a value in a nested dictionary using a list of keys."""
     for key in keys[:-1]:
         d = d.setdefault(key, {})
@@ -144,8 +140,8 @@ def set_nested(
 
 
 def delist_responses(
-    responses: Tuple[Dict[str, Any], ...]
-) -> List[Dict[str, Any]]:
+    responses: tuple[dict[str, Any], ...]
+) -> list[dict[str, Any]]:
     """Replace lists inside query with iteration over values."""
     out_list = []
     for response in responses:
@@ -168,8 +164,8 @@ def delist_responses(
 
 
 def delete_unknown_fields(
-    rawdict: Dict[str, Any], known_fields: List[str]
-) -> Dict[str, Any]:
+    rawdict: dict[str, Any], known_fields: list[str]
+) -> dict[str, Any]:
     """Delete any entries with key not known, flat dict only."""
     unknown = [k for k in rawdict.keys() if k not in known_fields]
     for item in unknown:
@@ -187,8 +183,8 @@ def unify_id(id: str, sub_id: str) -> str:
 
 @APP.command()
 def rcsb_metadata(
-    id_list: List[str], show_frame: Optional[bool] = False
-) -> Tuple[pd.DataFrame, List[Any]]:
+    id_list: list[str], show_frame: Optional[bool] = False
+) -> tuple[pd.DataFrame, list[Any]]:
     """Query the RCSB GraphQL endpoint for metadata.
 
     Example:

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Command-line interface and logging configuration."""
 # standard-library imports
 from importlib import metadata
