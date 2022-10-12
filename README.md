@@ -22,7 +22,7 @@
 [codacy]: https://www.codacy.com/gh/hydrationdynamics/zeigen?utm_source=github.com&utm_medium=referral&utm_content=hydrationdynamics/zeigen&utm_campaign=Badge_Grade
 [snyk]: https://snyk.io/advisor/python/zeigen
 
-[![logo][https://raw.githubusercontent.com/hydrationdynamics/zeigen/main/docs/_static/logo.png]])[logo license]
+[![logo][https://raw.githubusercontent.com/hydrationdynamics/zeigen/main/docs/_static/logo.png]][logo license]
 
 [logo license]: https://raw.githubusercontent.com/hydrationdynamics/zeigen/main/LICENSE.logo.txt
 
