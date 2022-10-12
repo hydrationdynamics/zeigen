@@ -2,27 +2,28 @@
 # third-party imports
 import json
 import operator
-import pandas as pd
 import time
+from collections.abc import Iterator
+from copy import deepcopy
+from functools import reduce
+from itertools import product as iproduct
+from typing import Any
+from typing import Optional
+from typing import Union
+
+import pandas as pd
 from Bio import SeqIO  # type: ignore
 from Bio.Seq import Seq  # type: ignore
 from Bio.SeqRecord import SeqRecord  # type: ignore
-from collections.abc import Iterator
-from copy import deepcopy
 from dotli import Dotli  # type: ignore
-from functools import reduce
 from gql import Client
 from gql import gql
 from gql.transport.aiohttp import AIOHTTPTransport
-from itertools import product as iproduct
 from loguru import logger
 from rcsbsearch import Attr as RCSBAttr  # type: ignore
 from rcsbsearch import rcsb_attributes  # type: ignore
 from rcsbsearch.search import Terminal  # type: ignore
 from statsdict import Stat  # type: ignore
-from typing import Any
-from typing import Optional
-from typing import Union
 
 # module imports
 from .common import APP
@@ -30,6 +31,7 @@ from .common import NAME
 from .common import RCSB_DATA_GRAPHQL_URL
 from .common import STATS
 from .config import read_config
+
 
 RCSB_ATTRIBUTES = [a.attribute for a in rcsb_attributes]
 OPERATOR_DICT = {

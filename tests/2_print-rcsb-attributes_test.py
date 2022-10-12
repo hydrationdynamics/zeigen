@@ -7,6 +7,7 @@ import sh
 from . import help_check
 from . import print_docstring
 
+
 # global constants
 zeigen = sh.Command("zeigen")
 SUBCOMMAND = "print-rcsb-attributes"

@@ -1,9 +1,10 @@
 """Command-line interface and logging configuration."""
 # standard-library imports
 # third-party imports
-import typer
 from importlib import metadata
 from typing import Optional
+
+import typer
 
 # module imports
 from .common import APP
@@ -13,6 +14,7 @@ from .find import find
 from .query import print_rcsb_attributes
 from .query import query
 from .query import rcsb_metadata
+
 
 # global constants
 unused_cli_funcs = (

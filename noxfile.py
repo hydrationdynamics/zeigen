@@ -1,11 +1,13 @@
 """Nox sessions."""
 # third-party imports
-import nox
 import random
 import shutil
 import sys
 from pathlib import Path
 from textwrap import dedent
+
+import nox
+
 
 try:
     # third-party imports

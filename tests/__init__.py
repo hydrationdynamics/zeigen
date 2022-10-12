@@ -4,11 +4,13 @@ import contextlib
 import copy
 import functools
 import os
+from pathlib import Path
+from typing import Callable
+
 import pytest
 import sh
-from pathlib import Path
 from sh import ErrorReturnCode
-from typing import Callable
+
 
 STATSFILE = "zeigen_stats.json"
 QUERY_OUTPUTS = ["zeigen.toml", STATSFILE, "test.tsv", "test.fa"]

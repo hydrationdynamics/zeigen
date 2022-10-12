@@ -1,16 +1,18 @@
 """Global constants and shared functions in common."""
 from __future__ import annotations
 
+import sys
+from typing import TypedDict
+
 # third-party imports
 import loguru
-import sys
 import typer
 from loguru import logger
 from statsdict import StatsDict  # type: ignore
-from typing import TypedDict
 
 # module imports
 from . import __doc__ as docstring
+
 
 # global constants
 DEFAULT_STDERR_LOG_LEVEL = "INFO"

@@ -13,6 +13,7 @@ from . import help_check
 from . import print_docstring
 from . import run_zeigen
 
+
 SUBCOMMAND = "query"
 METADATA_TEST_IDS = ["1STP", "2JEF"]
 RESPONSE_SIMPLE = {"a": 1, "b": {"c": 2}, "d": {"e": {"f": 3}}}
