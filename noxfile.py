@@ -62,9 +62,7 @@ def activate_virtualenv_in_precommit_hooks(session: Session) -> None:
         text = hook.read_text()
         bindir = repr(session.bin)[1:-1]  # strip quotes
         if not (
-            Path("A") == Path("a")
-            and bindir.lower() in text.lower()
-            or bindir in text
+            Path("A") == Path("a") and bindir.lower() in text.lower() or bindir in text
         ):
             continue
 
@@ -131,14 +129,10 @@ def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or ["src/zeigen"]
     session.install(".")
-    session.install(
-        "mypy", "pandas-stubs", "pytest", "types-tabulate", "types-toml"
-    )
+    session.install("mypy", "pandas-stubs", "pytest", "types-tabulate", "types-toml")
     session.run("mypy", *args)
     if not session.posargs:
-        session.run(
-            "mypy", f"--python-executable={sys.executable}", "noxfile.py"
-        )
+        session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
 
 
 @session(python=python_versions)
@@ -217,9 +211,7 @@ def docs(session: Session) -> None:
     """Build and serve documentation with live reloading on file changes."""
     args = session.posargs or ["--open-browser", "docs", "docs/_build"]
     session.install(".")
-    session.install(
-        "sphinx", "sphinx-autobuild", "sphinx-click", "sphinx-rtd-theme"
-    )
+    session.install("sphinx", "sphinx-autobuild", "sphinx-click", "sphinx-rtd-theme")
 
     build_dir = Path("docs", "_build")
     if build_dir.exists():

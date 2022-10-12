@@ -72,23 +72,17 @@ def check_against_rcsb_attributes(field: str) -> None:
     raise ValueError(f'Unrecognized RCSB field "{field}"')
 
 
-def rcsb_search_query(
-    field: str, op_str: str, val: Union[int, float, str]
-) -> Terminal:
+def rcsb_search_query(field: str, op_str: str, val: Union[int, float, str]) -> Terminal:
     """Convert query specifiers to queries."""
     check_against_rcsb_attributes(field)
     try:
         op = OPERATOR_DICT[op_str]
     except KeyError:
-        raise ValueError(
-            f'Unrecognized RCSB operator string "{op_str}"'
-        ) from None
+        raise ValueError(f'Unrecognized RCSB operator string "{op_str}"') from None
     return op(RCSBAttr(field), val)
 
 
-def construct_rcsb_structure_query(
-    id_list: list[str], fields: list[str]
-) -> str:
+def construct_rcsb_structure_query(id_list: list[str], fields: list[str]) -> str:
     """Construct an GraphQL query string for RCSB structure fields.
 
     We use the flattened field names from rcsbsearch in dot-separated form
@@ -129,9 +123,7 @@ def yield_nested_lists(
                     yield from yield_nested_lists(i, prefix + [k])
 
 
-def set_nested(
-    d: dict[str, Any], keys: list[str], value: Any
-) -> dict[str, Any]:
+def set_nested(d: dict[str, Any], keys: list[str], value: Any) -> dict[str, Any]:
     """Set a value in a nested dictionary using a list of keys."""
     for key in keys[:-1]:
         d = d.setdefault(key, {})
@@ -139,9 +131,7 @@ def set_nested(
     return d
 
 
-def delist_responses(
-    responses: tuple[dict[str, Any], ...]
-) -> list[dict[str, Any]]:
+def delist_responses(responses: tuple[dict[str, Any], ...]) -> list[dict[str, Any]]:
     """Replace lists inside query with iteration over values."""
     out_list = []
     for response in responses:
@@ -150,9 +140,7 @@ def delist_responses(
             out_list.append(deepcopy(response))
         else:
             list_keys = [k for k, v in list_kvs]
-            for sub, val_tuple in enumerate(
-                iproduct(*[v for k, v in list_kvs])
-            ):
+            for sub, val_tuple in enumerate(iproduct(*[v for k, v in list_kvs])):
                 new_response = deepcopy(response)
                 new_response[SUB_FIELD] = sub
                 [
@@ -297,9 +285,7 @@ def query(
     if not query_only:
         df = pd.concat(metadata_frames)
         df.sort_values(by=RESOLUTION_LABEL, inplace=True)
-        STATS["metadata_cols"] = Stat(
-            len(df.columns), desc="# of metadata fields"
-        )
+        STATS["metadata_cols"] = Stat(len(df.columns), desc="# of metadata fields")
         df.to_csv(set_name + ".tsv", sep="\t")
         STATS["missing_seqs"] = Stat(
             len(df) - len(seqs), desc="# of RCSB entries w/o sequence"

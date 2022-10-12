@@ -56,9 +56,7 @@ def read_config(name: str, addl_config_dir: Union[None, str] = None) -> Any:
     global_config_path = config_dir_path / config_file_name
     logger.debug(f"Global config file at {global_config_path}")
     if not global_config_path.exists():
-        logger.info(
-            f"Creating config file {config_dir_path} from {name} template."
-        )
+        logger.info(f"Creating config file {config_dir_path} from {name} template.")
         config_bytes = pkgutil.get_data(name, "templates/" + config_file_name)
         if config_bytes is not None:
             config_template = config_bytes.decode("utf-8")

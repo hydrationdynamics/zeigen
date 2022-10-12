@@ -47,9 +47,7 @@ RESPONSE_1STP = {
             }
         }
     ],
-    "exptl_crystal": [
-        {"density_percent_sol": 73.86, "density_Matthews": 4.71}
-    ],
+    "exptl_crystal": [{"density_percent_sol": 73.86, "density_Matthews": 4.71}],
     "exptl_crystal_grow": None,
 }
 RESPONSE_2JEF = {
@@ -73,11 +71,7 @@ RESPONSE_2JEF = {
             }
         },
         {"entity_poly": {"pdbx_seq_one_letter_code_can": "GGGGGAAGGATTCC"}},
-        {
-            "entity_poly": {
-                "pdbx_seq_one_letter_code_can": "TCACNGAATCCTTCCCCC"
-            }
-        },
+        {"entity_poly": {"pdbx_seq_one_letter_code_can": "TCACNGAATCCTTCCCCC"}},
     ],
     "exptl_crystal": [{"density_percent_sol": 53.08, "density_Matthews": 2.6}],
     "exptl_crystal_grow": [{"pH": 7.4}],
@@ -105,11 +99,7 @@ RESPONSE_2JEF_REORDERED = {
             }
         },
         {"entity_poly": {"pdbx_seq_one_letter_code_can": "GGGGGAAGGATTCC"}},
-        {
-            "entity_poly": {
-                "pdbx_seq_one_letter_code_can": "TCACNGAATCCTTCCCCC"
-            }
-        },
+        {"entity_poly": {"pdbx_seq_one_letter_code_can": "TCACNGAATCCTTCCCCC"}},
     ],
 }
 
