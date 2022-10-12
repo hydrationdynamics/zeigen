@@ -96,6 +96,12 @@ zeigen = "zeigen.__main__:main"
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
 
+[tool.coverage.run]
+source = ["zeigen", "src/zeigen"]
+
+[tool.coverage.report]
+show_missing = true]
+
 [tool.isort]
 profile = "black"
 force_single_line = true
