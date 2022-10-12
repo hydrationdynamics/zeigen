@@ -1,7 +1,6 @@
 # Zeigen - Show Water Networks
 
 [![PyPI](https://img.shields.io/pypi/v/zeigen.svg)][pypi_]
-[![Status](https://img.shields.io/pypi/status/zeigen.svg)][status]
 [![Python](https://img.shields.io/pypi/pyversions/zeigen)][python version]
 [![Docs](https://img.shields.io/readthedocs/zeigen/latest.svg?label=Read%20the%20Docs)][read the docs]
 [![Tests](https://github.com/hydrationdynamics/zeigen/workflows/Tests/badge.svg)][tests]
@@ -13,7 +12,6 @@
 [![Snyk Health](https://snyk.io/advisor/python/zeigen/badge.svg)][snyk]
 
 [pypi_]: https://pypi.org/project/zeigen/
-[status]: https://pypi.org/project/zeigen/
 [python version]: https://pypi.org/project/zeigen
 [read the docs]: https://zeigen.readthedocs.io/
 [tests]: https://github.com/hydrationdynamics/zeigen/actions?workflow=Tests
@@ -24,13 +22,15 @@
 [codacy]: https://www.codacy.com/gh/hydrationdynamics/zeigen?utm_source=github.com&utm_medium=referral&utm_content=hydrationdynamics/zeigen&utm_campaign=Badge_Grade
 [snyk]: https://snyk.io/advisor/python/zeigen
 
-![logo](https://raw.githubusercontent.com/hydrationdynamics/zeigen/main/docs/_static/logo.png)(https://raw.githubusercontent.com/hydrationdynamics/zeigen/main/LICENSE.artwork.txt)
+[![logo][https://raw.githubusercontent.com/hydrationdynamics/zeigen/main/docs/_static/logo.png]])[logo license]
+
+[logo license]: https://raw.githubusercontent.com/hydrationdynamics/zeigen/main/LICENSE.logo.txt
 
 ## Features
 
-_Zeigen_ implements a query of the PDB, with download of metadata.
-The query is highly configurable through the `zeigen.conf`
-configuration file that is placed in a system-dependent config
+_Zeigen_ finds networks of water in PDB structures.
+The PDB query is highly configurable through the `zeigen.conf`
+configuration file that is placed in the config
 directory upon first program run. The query results are
 placed in a TSV file, with global stats to a JSON file.
 
