@@ -93,14 +93,14 @@ types-toml = ">=0.10.3"
 [tool.poetry.scripts]
 zeigen = "zeigen.__main__:main"
 
-[tool.coverage.paths]
-source = ["src/zeigen", "*/site-packages"]
+#[tool.coverage.paths]
+#source = ["src/zeigen", "*/site-packages"]
 
-[tool.coverage.run]
-source = ["src/zeigen"]
+#[tool.coverage.run]
+#source = ["src/zeigen"]
 
-[tool.coverage.report]
-show_missing = true
+#[tool.coverage.report]
+#show_missing = true
 
 [tool.isort]
 profile = "black"
