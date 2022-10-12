@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "zeigen"
 version = "0.2.0"
-description = "Find hydrated waters in atomic-resolution crystal structures"
+description = "Find water networks in atomic-resolution crystal structures"
 authors = ["Joel Berendzen <joel@generisbio.com>"]
 license = "BSD-3-Clause"
 readme = "README.md"
@@ -34,26 +34,24 @@ Changelog = "https://github.com/hydrationdynamics/zeigen/releases"
 [tool.poetry.dependencies]
 python = ">=3.9.1,<3.11"
 attrs = ">=21.4.0"
+biopython = ">=1.79"
 colorama = ">=0.4.4"
+dotli = ">=1.1"
+dynaconf = ">=3.1.7"
 gemmi = ">=0.5.2"
 loguru = ">=0.6.0"
 matplotlib = ">=3.5.1"
 numpy = ">=1.22.1"
 pandas = ">=1.4.0"
 pint = ">=0.18"
+rcsbsearch = {git = "https://github.com/hydrationdynamics/rcsbsearch.git", branch="master" }
 schema = ">=0.7.5"
 scipy = ">=1.7.3"
 statsdict = ">=0.1.5"
 tabulate = ">=0.8.9"
 toml = ">=0.10.2"
-uncertainties = ">=3.1.6"
 typer = ">=0.4.0"
-dynaconf = ">=3.1.7"
-tqdm = ">=4.62.3"
-gql = {extras = ["all"], version = ">=3.0.0"}
-dotli = ">=1.1"
-biopython = ">=1.79"
-rcsbsearch = {git = "https://github.com/hydrationdynamics/rcsbsearch.git", branch="master" }
+uncertainties = ">=3.1.6"
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"
@@ -87,8 +85,8 @@ pandas-stubs = ">=1.2.0.45"
 pytest-datadir-mgr = ">=1.3.1"
 pytest-cov = ">=3.0.0"
 sh = ">=1.14.2"
-types-toml = ">=0.10.3"
 types-tabulate = ">=0.8.5"
+types-toml = ">=0.10.3"
 
 [tool.poetry.scripts]
 zeigen = "zeigen.__main__:main"
@@ -139,13 +137,9 @@ import_heading_firstparty = "first-party imports"
 import_heading_localfolder = "module imports"
 known_standard_library = "pkg_resources"
 
-[tool.poetry-dynamic-versioning]
-enable = false
-style = "semver"
-
 [tool.pytest.ini_options]
 addopts = "-x"
 
 [build-system]
-requires = ["poetry-core>=1.1.0"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
