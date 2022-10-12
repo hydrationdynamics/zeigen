@@ -39,6 +39,7 @@ colorama = ">=0.4.4"
 dotli = ">=1.1"
 dynaconf = ">=3.1.7"
 gemmi = ">=0.5.2"
+gql = {extras = ["all"], version = ">=3.0.0"}
 loguru = ">=0.6.0"
 matplotlib = ">=3.5.1"
 numpy = ">=1.22.1"
@@ -93,15 +94,6 @@ zeigen = "zeigen.__main__:main"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
-tests = ["tests", "*/tests"]
-
-[tool.coverage.run]
-branch = true
-source = ["zeigen", "tests"]
-
-[tool.coverage.report]
-show_missing = true
-faiL_under = 80
 
 [tool.isort]
 profile = "black"
