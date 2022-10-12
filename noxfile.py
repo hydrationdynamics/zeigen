@@ -98,10 +98,12 @@ def precommit(session: Session) -> None:
         "flake8-bugbear",
         "flake8-docstrings",
         "flake8-rst-docstrings",
+        "isort",
         "pandas-stubs",
         "pep8-naming",
         "pre-commit",
         "pre-commit-hooks",
+        "pyupgrade",
         "reorder-python-imports",
     )
     session.run("pre-commit", *args)
@@ -201,7 +203,7 @@ def docs_build(session: Session) -> None:
     """Build the documentation."""
     args = session.posargs or ["docs", "docs/_build"]
     session.install(".")
-    session.install("sphinx", "sphinx-click", "sphinx-rtd-theme")
+    session.install("sphinx", "sphinx-click", "myst_parser", "furo")
 
     build_dir = Path("docs", "_build")
     if build_dir.exists():
