@@ -94,10 +94,10 @@ types-toml = ">=0.10.3"
 zeigen = "zeigen.__main__:main"
 
 [tool.coverage.paths]
-source = ["src", "*/site-packages"]
+source = ["src/zeigen", "*/site-packages"]
 
 [tool.coverage.run]
-source = ["zeigen", "src/zeigen"]
+source = ["src/zeigen"]
 
 [tool.coverage.report]
 show_missing = true
