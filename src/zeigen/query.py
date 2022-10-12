@@ -267,7 +267,11 @@ def query(
         )
         combined_query = reduce(operator.iand, query_list)
         start_time = time.time()
-        results = list(combined_query().iquery())
+        try:
+            query_results = combined_query().iquery()
+        except Exception as e:
+            print(e)
+        results = list(query_results)
         n_results = len(results)
         if not query_only:
             category_frame, seqs = rcsb_metadata(results)
