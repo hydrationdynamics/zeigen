@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
 """Tests for input table creation."""
+# third-party imports
 import shutil
 from pathlib import Path
 
+# module imports
 from . import print_docstring
 
 

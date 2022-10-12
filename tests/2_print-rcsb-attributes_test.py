@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
 """Tests for creating list of RCSB attributes."""
+# third-party imports
 import pytest
 import sh
 
+# module imports
 from . import help_check
 from . import print_docstring
 

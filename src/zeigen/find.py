@@ -1,8 +1,10 @@
 """Find hydrated waters in structure."""
+# third-party imports
 import pandas as pd
 from loguru import logger
 from statsdict import Stat  # type: ignore
 
+# module imports
 from .common import APP
 from .common import NAME
 from .common import STATS

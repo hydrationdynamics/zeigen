@@ -1,13 +1,14 @@
 """Nox sessions."""
+# third-party imports
+import nox
 import random
 import shutil
 import sys
 from pathlib import Path
 from textwrap import dedent
 
-import nox
-
 try:
+    # third-party imports
     from nox_poetry import Session
     from nox_poetry import session
 except ImportError:
@@ -126,7 +127,7 @@ def safety(session: Session) -> None:
 @session(python=python_versions)
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
-    args = session.posargs or ["zeigen"]
+    args = session.posargs or ["src/zeigen"]
     session.install(".")
     session.install(
         "mypy", "pandas-stubs", "pytest", "types-tabulate", "types-toml"

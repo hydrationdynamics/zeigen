@@ -1,0 +1,13 @@
+{
+  "_template": "https://github.com/cjolowicz/cookiecutter-hypermodern-python",
+  "author": "Joel Berendzen",
+  "copyright_year": "2022",
+  "development_status": "Development Status :: 4 - Beta",
+  "email": "joel@generisbio.com",
+  "friendly_name": "Zeigen",
+  "github_user": "hydrationdynamics",
+  "license": "MIT",
+  "package_name": "zeigen",
+  "project_name": "zeigen",
+  "version": "0.2.0"
+}

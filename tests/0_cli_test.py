@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Tests for basic CLI function."""
+# module imports
 from . import help_check
 from . import print_docstring
 from . import run_zeigen

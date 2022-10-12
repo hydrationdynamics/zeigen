@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 """Tests for data ingestion."""
-# standard library imports
+# third-party imports
 from pathlib import Path
 
+# module imports
 from . import help_check
 from . import print_docstring
 from . import run_zeigen

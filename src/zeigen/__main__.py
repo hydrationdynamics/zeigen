@@ -1,10 +1,11 @@
 """Command-line interface and logging configuration."""
 # standard-library imports
+# third-party imports
+import typer
 from importlib import metadata
 from typing import Optional
 
-import typer
-
+# module imports
 from .common import APP
 from .common import NAME
 from .common import STATE

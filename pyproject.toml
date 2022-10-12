@@ -4,7 +4,7 @@ version = "0.2.0"
 description = "Find hydrated waters in atomic-resolution crystal structures"
 authors = ["Joel Berendzen <joel@generisbio.com>"]
 license = "BSD-3-Clause"
-readme = "README.rst"
+readme = "README.md"
 homepage = "https://github.com/hydrationdynamics/zeigen"
 repository = "https://github.com/hydrationdynamics/zeigen"
 documentation = "https://zeigen.readthedocs.io"
@@ -29,7 +29,7 @@ keywords = [
 ]
 
 [tool.poetry.urls]
-Changelog = "https://github.com/joelb123/zeigen/releases"
+Changelog = "https://github.com/hydrationdynamics/zeigen/releases"
 
 [tool.poetry.dependencies]
 python = ">=3.9.1,<3.11"
@@ -61,12 +61,13 @@ black = ">=21.10b0"
 coverage = {extras = ["toml"], version = ">=6.2"}
 darglint = ">=1.8.1"
 flake8 = ">=4.0.1"
+flake8-bandit = ">=2.1.2"
 flake8-bugbear = ">=21.9.2"
 flake8-docstrings = ">=1.6.0"
 flake8-rst-docstrings = ">=0.2.5"
 furo = ">=2021.11.12"
 isort = ">=5.10.1"
-mypy = ">=0.931"
+mypy = ">=0.930"
 pep8-naming = ">=0.12.1"
 pre-commit = ">=2.16.0"
 pre-commit-hooks = ">=4.1.0"
@@ -78,11 +79,10 @@ sphinx-autobuild = ">=2021.3.14"
 sphinx-click = ">=3.0.2"
 typeguard = ">=2.13.3"
 xdoctest = {extras = ["colors"], version = ">=0.15.10"}
-# these are obsoleted by hypermodern
-nox-poetry = "*"
-reorder-python-imports = "*"
-sphinx-rtd-theme = "*"
-# test deps
+myst-parser = {version = ">=0.16.1"}
+# test deps for this package
+nox = ">=2021.6.6"
+nox-poetry = ">=0.9.0"
 pandas-stubs = ">=1.2.0.45"
 pytest-datadir-mgr = ">=1.3.1"
 pytest-cov = ">=3.0.0"
@@ -95,7 +95,7 @@ zeigen = "zeigen.__main__:main"
 
 [tool.black]
 line-length = 79
-target-version = ['py38', 'py39', 'py310']
+target-version = ['py39', 'py310']
 include = '\.pyi?$'
 exclude = '''
 /(
@@ -113,7 +113,7 @@ exclude = '''
 '''
 
 [tool.coverage.paths]
-source = ["zeigen", "*site-packages/zeigen"]
+source = ["src", "*/site-packages"]
 
 [tool.coverage.report]
 show_missing = true

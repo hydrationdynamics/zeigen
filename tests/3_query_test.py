@@ -1,16 +1,17 @@
-# -*- coding: utf-8 -*-
 """Tests for data ingestion."""
-# standard library imports
+# third-party imports
 from copy import deepcopy
 from pathlib import Path
 
+# first-party imports
 from zeigen.query import delist_responses
 
+# module imports
+from . import QUERY_OUTPUTS
+from . import STATSFILE
 from . import help_check
 from . import print_docstring
-from . import QUERY_OUTPUTS
 from . import run_zeigen
-from . import STATSFILE
 
 SUBCOMMAND = "query"
 METADATA_TEST_IDS = ["1STP", "2JEF"]
