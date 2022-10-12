@@ -13,7 +13,7 @@ from sh import ErrorReturnCode
 
 
 STATSFILE = "zeigen_stats.json"
-QUERY_OUTPUTS = ["zeigen.toml", STATSFILE, "test.tsv", "test.fa"]
+QUERY_OUTPUTS = ["zeigen.toml", STATSFILE, "test.parquet", "test.fa"]
 
 
 @contextlib.contextmanager

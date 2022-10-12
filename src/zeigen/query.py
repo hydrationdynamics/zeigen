@@ -292,7 +292,7 @@ def query(
         df = pd.concat(metadata_frames)
         df.sort_values(by=RESOLUTION_LABEL, inplace=True)
         STATS["metadata_cols"] = Stat(len(df.columns), desc="# of metadata fields")
-        df.to_csv(set_name + ".tsv", sep="\t")
+        df.to_parquet(set_name + ".parquet", index=True)
         STATS["missing_seqs"] = Stat(
             len(df) - len(seqs), desc="# of RCSB entries w/o sequence"
         )
