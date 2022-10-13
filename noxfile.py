@@ -149,10 +149,10 @@ def tests(session: Session) -> None:
         "pytest-datadir-mgr",
         "sh",
     )
-    session.run("pytest", "--cov=zeigen", *session.posargs)
-    cov_path = Path(".coverage")
-    if cov_path.exists():
-        cov_path.rename(f".coverage.{random.randrange(100000)}")  # noqa: S311
+    session.run("pytest", "--cov=zeigen", "--paralle-mode", *session.posargs)
+    #cov_path = Path(".coverage")
+    #if cov_path.exists():
+    #    cov_path.rename(f".coverage.{random.randrange(100000)}")  # noqa: S311
 
 
 @session(python=["3.10"])
