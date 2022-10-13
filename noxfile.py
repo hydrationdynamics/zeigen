@@ -129,7 +129,8 @@ def safety(session: Session) -> None:
 @session(python=python_versions)
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
-    args = session.posargs or ["src/zeigen"]
+    args = session.posargs or ["src"]
+    session.install(".")
     session.install("mypy", "pandas-stubs", "pytest", "types-tabulate", "types-toml")
     session.run("mypy", *args)
     if not session.posargs:
@@ -161,7 +162,7 @@ def coverage(session: Session) -> None:
     nsessions = len(session._runner.manifest)  # type: ignore[attr-defined]
     has_args = session.posargs and nsessions == 1
     args = session.posargs if has_args else ["report"]
-    session.install(".")
+    # session.install(".")
     session.install("coverage[toml]")
     if not has_args and any(Path().glob(".coverage.*")):
         session.run("coverage", "combine")
