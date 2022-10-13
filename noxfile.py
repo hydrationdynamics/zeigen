@@ -155,7 +155,7 @@ def tests(session: Session) -> None:
         cov_path.rename(f".coverage.{random.randrange(100000)}")  # noqa: S311
 
 
-@session
+@session(python=python_versions)
 def coverage(session: Session) -> None:
     """Produce the coverage report."""
     # Do not use session.posargs unless this is the only session.
