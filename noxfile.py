@@ -130,7 +130,6 @@ def safety(session: Session) -> None:
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or ["src/zeigen"]
-    session.install(".")
     session.install("mypy", "pandas-stubs", "pytest", "types-tabulate", "types-toml")
     session.run("mypy", *args)
     if not session.posargs:
