@@ -29,3 +29,35 @@ def test_convert(datadir_mgr):
         args = ["--verbose", SUBCOMMAND, TABLE_FILE]
         run_zeigen(args)
         assert Path("test.tsv").exists()
+
+
+@print_docstring()
+def test_list_cols(datadir_mgr):
+    """Test listing column names."""
+    with datadir_mgr.in_tmp_dir(
+        inpathlist=[TABLE_FILE],
+        save_outputs=True,
+        outscope="module",
+    ):
+        args = ["--verbose", "print-columns", TABLE_FILE]
+        run_zeigen(args)
+
+
+@print_docstring()
+def test_print_cols(datadir_mgr):
+    """Test printing select columns."""
+    with datadir_mgr.in_tmp_dir(
+        inpathlist=[TABLE_FILE],
+        save_outputs=True,
+        outscope="module",
+    ):
+        args = [
+            "--verbose",
+            "print-columns",
+            "--first-n",
+            "25",
+            "macromolecule",
+            "pH",
+            TABLE_FILE,
+        ]
+        run_zeigen(args)

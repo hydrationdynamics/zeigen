@@ -28,9 +28,11 @@ from rcsbsearch.search import Terminal  # type: ignore
 
 # module imports
 from .common import APP
+from .common import ID_FIELD
 from .common import NAME
 from .common import RCSB_DATA_GRAPHQL_URL
 from .common import STATS
+from .common import SUB_FIELD
 from .config import read_config
 
 
@@ -43,9 +45,6 @@ OPERATOR_DICT = {
     ">=": operator.ge,
     ">": operator.gt,
 }
-ID_FIELD = "rcsb_id"
-ID_FIELD_LEN = 4
-SUB_FIELD = "sub"
 RESOLUTION_FIELD = "rcsb_entry_info.diffrn_resolution_high.value"
 RESOLUTION_LABEL = "resolution, Å"
 SEQ_FIELD = "polymer_entities.entity_poly.pdbx_seq_one_letter_code_can"
