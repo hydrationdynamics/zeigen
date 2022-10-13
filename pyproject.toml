@@ -96,10 +96,10 @@ zeigen = "zeigen.__main__:main"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
-test = ["tests", "*/tests"]
+tests = ["tests", "*/tests"]
 
 [tool.coverage.run]
-source = ["zeigen", "tests"]
+source = ["zeigen"]
 
 [tool.coverage.report]
 show_missing = true
