@@ -98,7 +98,7 @@ zeigen = "zeigen.__main__:main"
 source = ["src", "*/site-packages"]
 
 [tool.coverage.run]
-source = ["src", "*/site-packages"]
+source = ["src"]
 
 [tool.coverage.report]
 show_missing = true
