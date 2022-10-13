@@ -193,7 +193,7 @@ def test_full_query(datadir_mgr):
     """Test query of PDB with metadata."""
     with datadir_mgr.in_tmp_dir(
         save_outputs=True,
-        outscope="module",
+        outscope="global",
     ):
         args = ["--verbose", SUBCOMMAND, "test"]
         run_zeigen(args)

@@ -10,6 +10,7 @@ import typer
 from .common import APP
 from .common import NAME
 from .common import STATE
+from .convert import parquet_to_tsv
 from .find import find
 from .query import print_rcsb_attributes
 from .query import query
@@ -19,6 +20,7 @@ from .query import rcsb_metadata
 # global constants
 unused_cli_funcs = (
     find,
+    parquet_to_tsv,
     query,
     rcsb_metadata,
     print_rcsb_attributes,

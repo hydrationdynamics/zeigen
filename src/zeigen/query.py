@@ -290,9 +290,16 @@ def query(
     STATS["total_structures"] = Stat(len(all_keys), desc="Total structures")
     if not query_only:
         df = pd.concat(metadata_frames)
-        df.sort_values(by=RESOLUTION_LABEL, inplace=True)
+        df.sort_values(by=[RESOLUTION_LABEL, ID_FIELD, SUB_FIELD], inplace=True)
+        df.reset_index(drop=True, inplace=True)
+        # set id, sub, and resolution as leading columns
+        new_cols = list(df.columns)
+        for col_name in [RESOLUTION_LABEL, SUB_FIELD, ID_FIELD]:
+            new_cols.remove(col_name)
+            new_cols.insert(0, col_name)
+        df = df[new_cols]
         STATS["metadata_cols"] = Stat(len(df.columns), desc="# of metadata fields")
-        df.to_parquet(set_name + ".parquet", index=True)
+        df.to_parquet(set_name + ".parquet")
         STATS["missing_seqs"] = Stat(
             len(df) - len(seqs), desc="# of RCSB entries w/o sequence"
         )

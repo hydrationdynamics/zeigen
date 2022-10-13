@@ -97,8 +97,8 @@ zeigen = "zeigen.__main__:main"
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
 
-#[tool.coverage.run]
-#source = ["src"]
+[tool.coverage.run]
+source = ["src"]
 
 [tool.isort]
 profile = "black"
