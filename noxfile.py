@@ -162,6 +162,7 @@ def coverage(session: Session) -> None:
     nsessions = len(session._runner.manifest)  # type: ignore[attr-defined]
     has_args = session.posargs and nsessions == 1
     args = session.posargs if has_args else ["report"]
+    session.install(".")
     session.install("coverage[toml]")
     if not has_args and any(Path().glob(".coverage.*")):
         session.run("coverage", "combine")
