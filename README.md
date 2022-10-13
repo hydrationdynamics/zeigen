@@ -36,8 +36,9 @@ placed in a TSV file, with global stats to a JSON file.
 
 ## Requirements
 
-_Zeigen_ has been developed under Python 3.10 on Linux and
-tested on Python 3.9 and 3.10 on Linux and Mac.
+_Zeigen_ has been developed under Python 3.10 and
+tested on Python 3.9 and 3.10 on Linux. Works on MacOS, but
+not tested due to energy costs.
 
 ## Installation
 
