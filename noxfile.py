@@ -111,7 +111,7 @@ def precommit(session: Session) -> None:
         activate_virtualenv_in_precommit_hooks(session)
 
 
-@session(python=["3.10"])
+@session(python=python_versions)
 def safety(session: Session) -> None:
     """Scan dependencies for insecure packages."""
     requirements = session.poetry.export_requirements()
@@ -154,7 +154,7 @@ def tests(session: Session) -> None:
         cov_path.rename(f".coverage.{random.randrange(100000)}")  # noqa: S311
 
 
-@session(python=python_versions)
+@session(python=["3.10"])
 def coverage(session: Session) -> None:
     """Produce the coverage report."""
     # Do not use session.posargs unless this is the only session.
