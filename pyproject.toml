@@ -99,6 +99,7 @@ source = ["src", "*/site-packages"]
 tests = ["tests", "*/tests"]
 
 [tool.coverage.run]
+branch = true
 source = ["zeigen"]
 
 [tool.coverage.report]
