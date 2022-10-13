@@ -95,7 +95,7 @@ types-toml = ">=0.10.3"
 zeigen = "zeigen.__main__:main"
 
 [tool.coverage.paths]
-source = ["zeigen", "*/site-packages"]
+source = ["src/zeigen", "*/site-packages"]
 
 #[tool.coverage.run]
 #source = ["src"]
