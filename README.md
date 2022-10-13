@@ -33,6 +33,11 @@ configuration file that is placed in the config
 directory upon first program run. The query results are
 placed in a TSV file, with global stats to a JSON file.
 
+_Zeigen_ uses _rcsbsearch_ to query the PDB. Currently the
+_rcsbsearch_ package is broken, as it uses the obsolete v1
+query. _Zeigen_ includes a copy of _rcsbsearch_ which has
+been patched for v2 queries.
+
 ## Requirements
 
 _Zeigen_ has been developed under Python 3.10 and
@@ -69,6 +74,8 @@ please [file an issue] along with a detailed description.
 ## Credits
 
 _Zeigen_ was written by Joel Berendzen.
+
+_rcsbsearch_ was written by Spencer Bliven.
 
 This project was generated from [@cjolowicz]'s [Hypermodern Python Cookiecutter] template.
 

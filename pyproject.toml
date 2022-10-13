@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zeigen"
-version = "0.2.1"
+version = "0.2.2"
 description = "Find water networks in atomic-resolution crystal structures"
 authors = ["Joel Berendzen <joel@generisbio.com>"]
 license = "BSD-3-Clause"
