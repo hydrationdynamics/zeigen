@@ -96,6 +96,7 @@ zeigen = "zeigen.__main__:main"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
+test = ["tests", "*/tests"]
 
 [tool.coverage.run]
 source = ["src"]
