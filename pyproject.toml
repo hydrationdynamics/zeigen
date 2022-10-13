@@ -105,7 +105,7 @@ source = ["zeigen"]
 show_missing = true
 
 [tool.cruft]
-skip = ["src/*", "tests/*"]
+skip = ["src/*", "tests/*", "poetry.lock"]
 
 [tool.isort]
 profile = "black"
