@@ -152,7 +152,7 @@ def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or ["src"]
     session.install(".")
-    session.install("mypy", "pandas-stubs", "pytest", "types-tabulate", "types-toml")
+    session.install("mypy", "pandas-stubs", "pytest", "types-requests", "types-tabulate", "types-toml")
     session.run("mypy", *args)
     if not session.posargs:
         session.run("mypy", f"--python-executable={sys.executable}", "noxfile.py")
@@ -198,6 +198,7 @@ def typeguard(session: Session) -> None:
         "pytest",
         "pytest-datadir-mgr",
         "sh",
+        "types-requests",
         "types-toml",
         "types-tabulate",
         "typeguard",
