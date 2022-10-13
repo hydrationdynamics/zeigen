@@ -94,11 +94,11 @@ types-toml = ">=0.10.3"
 [tool.poetry.scripts]
 zeigen = "zeigen.__main__:main"
 
-#[tool.coverage.paths]
-#source = ["src/", "*/site-packages"]
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
 
-#[tool.coverage.run]
-#source = ["src"]
+[tool.coverage.run]
+source = ["src", "*/site-packages"]
 
 [tool.isort]
 profile = "black"
