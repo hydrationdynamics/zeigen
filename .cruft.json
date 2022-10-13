@@ -1,7 +1,7 @@
 {
   "template": "https://github.com/cjolowicz/cookiecutter-hypermodern-python",
-  "commit": "48c233b36f7eb49a484927245e2c90c7f5d3d116",
-  "checkout": "2022.6.3",
+  "commit": "4f34f450aa6f9c79682a480abb9170066713c5f3",
+  "checkout": null,
   "context": {
     "cookiecutter": {
       "project_name": "zeigen",

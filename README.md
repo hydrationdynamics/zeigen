@@ -1,7 +1,7 @@
 # Zeigen - Show Water Networks
 
-[![PyPI](https://img.shields.io/pypi/v/zeigen.svg)][pypi_]
-[![Python](https://img.shields.io/pypi/pyversions/zeigen)][python version]
+[![PyPI](https://img.shields.io/pypi/v/zeigen.svg)][pypi status]
+[![Python Version](https://img.shields.io/pypi/pyversions/zeigen)][pypi status]
 [![Docs](https://img.shields.io/readthedocs/zeigen/latest.svg?label=Read%20the%20Docs)][read the docs]
 [![Tests](https://github.com/hydrationdynamics/zeigen/workflows/Tests/badge.svg)][tests]
 [![Codecov](https://codecov.io/gh/hydrationdynamics/zeigen/branch/main/graph/badge.svg)][codecov]
@@ -11,8 +11,7 @@
 [![Codacy](https://app.codacy.com/project/badge/Grade/3e29ba5ba23d48888372138790ab26f3)][codacy]
 [![Snyk Health](https://snyk.io/advisor/python/zeigen/badge.svg)][snyk]
 
-[pypi_]: https://pypi.org/project/zeigen/
-[python version]: https://pypi.org/project/zeigen
+[pypi status]: https://pypi.org/project/zeigen/
 [read the docs]: https://zeigen.readthedocs.io/
 [tests]: https://github.com/hydrationdynamics/zeigen/actions?workflow=Tests
 [codecov]: https://app.codecov.io/gh/hydrationdynamics/zeigen
