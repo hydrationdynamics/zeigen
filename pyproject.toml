@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zeigen"
-version = "0.2.0"
+version = "0.2.1"
 description = "Find water networks in atomic-resolution crystal structures"
 authors = ["Joel Berendzen <joel@generisbio.com>"]
 license = "BSD-3-Clause"
@@ -27,6 +27,10 @@ keywords = [
     "structural biology",
     "hydrated water"
 ]
+packages = [
+	{ include = "zeigen", from = "src" },
+	{ include = "rcsbsearch", from = "src" }
+]
 
 [tool.poetry.urls]
 Changelog = "https://github.com/hydrationdynamics/zeigen/releases"
@@ -46,7 +50,7 @@ numpy = ">=1.22.1"
 pandas = ">=1.4.0"
 pint = ">=0.18"
 pyarrow = ">=9.0.0"
-rcsbsearch = {git = "https://github.com/hydrationdynamics/rcsbsearch.git", branch="master" }
+#rcsbsearch = {git = "https://github.com/hydrationdynamics/rcsbsearch.git", branch="master" }
 schema = ">=0.7.5"
 scipy = ">=1.7.3"
 statsdict = ">=0.1.5"
@@ -55,6 +59,8 @@ toml = ">=0.10.2"
 tqdm = ">=4.64.1"
 typer = ">=0.4.0"
 uncertainties = ">=3.1.6"
+jsonschema = "^4.16.0"
+requests = "^2.28.1"
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"

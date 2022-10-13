@@ -20,10 +20,11 @@ from gql import Client
 from gql import gql
 from gql.transport.aiohttp import AIOHTTPTransport
 from loguru import logger
+from statsdict import Stat  # type: ignore
+
 from rcsbsearch import Attr as RCSBAttr  # type: ignore
 from rcsbsearch import rcsb_attributes  # type: ignore
 from rcsbsearch.search import Terminal  # type: ignore
-from statsdict import Stat  # type: ignore
 
 # module imports
 from .common import APP
