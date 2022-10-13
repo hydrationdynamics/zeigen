@@ -99,7 +99,7 @@ source = ["src", "*/site-packages"]
 test = ["tests", "*/tests"]
 
 [tool.coverage.run]
-source = ["src"]
+source = ["zeigen"]
 
 [tool.coverage.report]
 show_missing = true
