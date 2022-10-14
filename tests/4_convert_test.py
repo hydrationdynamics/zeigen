@@ -34,30 +34,29 @@ def test_convert(datadir_mgr):
 @print_docstring()
 def test_list_cols(datadir_mgr):
     """Test listing column names."""
-    with datadir_mgr.in_tmp_dir(
-        inpathlist=[TABLE_FILE],
-        save_outputs=True,
-        outscope="module",
-    ):
+    with datadir_mgr.in_tmp_dir(inpathlist=[TABLE_FILE]):
         args = ["--verbose", "list-columns", TABLE_FILE]
-        run_zeigen(args)
+        columns = run_zeigen(args)
+        assert len(columns.split("\n")) > 3
 
 
 @print_docstring()
 def test_print_cols(datadir_mgr):
     """Test printing select columns."""
-    with datadir_mgr.in_tmp_dir(
-        inpathlist=[TABLE_FILE],
-        save_outputs=True,
-        outscope="module",
-    ):
+    n_lines = 25
+    with datadir_mgr.in_tmp_dir(inpathlist=[TABLE_FILE]):
         args = [
             "--verbose",
             "print-columns",
             "--first-n",
-            "25",
+            str(n_lines),
             TABLE_FILE,
             "macromolecule",
             "pH",
         ]
-        run_zeigen(args)
+        head = run_zeigen(args)
+        assert len(head.split("\n")) == n_lines + 2
+        args[3] = str(-n_lines)
+        tail = run_zeigen(args)
+        assert len(tail.split("\n")) == n_lines + 2
+        assert head != tail

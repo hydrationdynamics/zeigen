@@ -59,8 +59,14 @@ def print_columns(
         logger.error(f"{parquetfile} does not exist.")
         sys.exit(1)
     df = pd.read_parquet(inpath)
-    if first_n > 0:
-        df = df.head(first_n)
+    if first_n is None:
+        raise Exception()
+    elif first_n > 0:
+        head_n: int = first_n
+        df = df.head(head_n)
+    elif first_n < 0:
+        tail_n: int = -first_n
+        df = df.tail(tail_n)
     for col in col_list:
         if col not in df.columns:
             logger.error(f"No column named '{col}' in file")
