@@ -39,7 +39,7 @@ def test_list_cols(datadir_mgr):
         save_outputs=True,
         outscope="module",
     ):
-        args = ["--verbose", "print-columns", TABLE_FILE]
+        args = ["--verbose", "list-columns", TABLE_FILE]
         run_zeigen(args)
 
 
@@ -56,8 +56,8 @@ def test_print_cols(datadir_mgr):
             "print-columns",
             "--first-n",
             "25",
+            TABLE_FILE,
             "macromolecule",
             "pH",
-            TABLE_FILE,
         ]
         run_zeigen(args)
