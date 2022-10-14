@@ -13,7 +13,7 @@ from .common import STATE
 from .convert import list_columns
 from .convert import parquet_to_tsv
 from .convert import print_columns
-from .find import find
+from .find import water_neighbors
 from .query import print_rcsb_attributes
 from .query import query
 from .query import rcsb_metadata
@@ -21,7 +21,7 @@ from .query import rcsb_metadata
 
 # global constants
 unused_cli_funcs = (
-    find,
+    water_neighbors,
     list_columns,
     print_columns,
     parquet_to_tsv,

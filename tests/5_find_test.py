@@ -9,7 +9,7 @@ from . import run_zeigen
 
 
 # global constants
-SUBCOMMAND = "find"
+SUBCOMMAND = "water-neighbors"
 
 
 def test_subcommand_help():
@@ -24,7 +24,7 @@ def test_find(datadir_mgr):
         save_outputs=True,
         outscope="module",
     ):
-        args = ["--verbose", SUBCOMMAND, "test"]
+        args = ["--verbose", SUBCOMMAND, "4HHA"]
         run_zeigen(args)
-        for filestring in ["zeigen_stats.json", "hydrated_waters.tsv"]:
+        for filestring in ["hydrated_waters.tsv"]:
             assert Path(filestring).exists()
