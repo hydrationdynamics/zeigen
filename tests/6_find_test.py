@@ -18,13 +18,13 @@ def test_subcommand_help():
 
 
 @print_docstring()
-def test_find(datadir_mgr):
-    """Test finding hydrated proton species."""
+def test_water_neighbors(datadir_mgr):
+    """Test finding nearest neighbors of waters."""
     with datadir_mgr.in_tmp_dir(
         save_outputs=True,
         outscope="module",
     ):
-        args = ["--verbose", SUBCOMMAND, "4HHA"]
+        args = ["--verbose", SUBCOMMAND, "5YCE"]
         run_zeigen(args)
-        for filestring in ["hydrated_waters.tsv"]:
+        for filestring in ["5YCE/neighbors.tsv", "5YCE/metadata.json"]:
             assert Path(filestring).exists()

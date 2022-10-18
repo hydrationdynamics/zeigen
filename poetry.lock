@@ -158,7 +158,7 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "botocore"
-version = "1.27.91"
+version = "1.27.92"
 description = "Low-level, data-driven core of boto 3."
 category = "main"
 optional = false
@@ -681,6 +681,17 @@ win32-setctime = {version = ">=1.0.0", markers = "sys_platform == \"win32\""}
 dev = ["Sphinx (>=4.1.1)", "black (>=19.10b0)", "colorama (>=0.3.4)", "docutils (==0.16)", "flake8 (>=3.7.7)", "isort (>=5.1.1)", "pytest (>=4.6.2)", "pytest-cov (>=2.7.1)", "sphinx-autobuild (>=0.7.1)", "sphinx-rtd-theme (>=0.4.3)", "tox (>=3.9.0)"]
 
 [[package]]
+name = "loguru-mypy"
+version = "0.0.4"
+description = ""
+category = "dev"
+optional = false
+python-versions = ">=3.6.0"
+
+[package.dependencies]
+typing-extensions = "*"
+
+[[package]]
 name = "markdown-it-py"
 version = "2.1.0"
 description = "Python port of markdown-it. Markdown parsing, done right!"
@@ -1017,7 +1028,7 @@ tomli = {version = ">=1.1.0", markers = "python_version < \"3.11\""}
 name = "progressbar2"
 version = "4.0.0"
 description = "A Python Progressbar library to provide visual (yet text based) progress to long running operations."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7.0"
 
@@ -1170,7 +1181,7 @@ six = ">=1.5"
 name = "python-utils"
 version = "3.3.3"
 description = "Python Utils is a module with some convenient utilities not included with the standard Python install"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">3.6.0"
 
@@ -1228,7 +1239,7 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 name = "requests-download"
 version = "0.1.2"
 description = "Download files using requests and save them to a target path"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -1400,7 +1411,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "sphinx"
-version = "5.2.3"
+version = "5.3.0"
 description = "Python documentation generator"
 category = "dev"
 optional = false
@@ -1705,7 +1716,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-urllib3"
-version = "1.26.25"
+version = "1.26.25.1"
 description = "Typing stubs for urllib3"
 category = "dev"
 optional = false
@@ -1836,7 +1847,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9.1,<3.11"
-content-hash = "30aa6431c8e54332d7423b79944729c2e0cbadf2ce8080471d1d81ce83f38d55"
+content-hash = "841df1ee24f2783910f80a01cc7ab39ab9ef52a61986a7ae2151d30f60ac12fb"
 
 [metadata.files]
 aiohttp = [
@@ -2025,8 +2036,8 @@ black = [
     {file = "black-22.10.0.tar.gz", hash = "sha256:f513588da599943e0cde4e32cc9879e825d58720d6557062d1098c5ad80080e1"},
 ]
 botocore = [
-    {file = "botocore-1.27.91-py3-none-any.whl", hash = "sha256:1d6e97bd8653f732c7078b34aa2bb438e750898957e5a0a74b6c72918bc1d0f7"},
-    {file = "botocore-1.27.91.tar.gz", hash = "sha256:c8fac203a391cc2e4b682877bfce70e723e33c529b35b399a1d574605fbeb1af"},
+    {file = "botocore-1.27.92-py3-none-any.whl", hash = "sha256:b49c34b80c782625905be75e669da4b42a99f074e0aa3007e15ccc6955682a07"},
+    {file = "botocore-1.27.92.tar.gz", hash = "sha256:70cf2cb04968794ed4688cc3b07874f6f4c932e325611be4e693a995fdb481be"},
 ]
 certifi = [
     {file = "certifi-2022.9.24-py3-none-any.whl", hash = "sha256:90c1a32f1d68f940488354e36370f6cca89f0f106db09518524c88d6ed83f382"},
@@ -2457,6 +2468,10 @@ livereload = [
 loguru = [
     {file = "loguru-0.6.0-py3-none-any.whl", hash = "sha256:4e2414d534a2ab57573365b3e6d0234dfb1d84b68b7f3b948e6fb743860a77c3"},
     {file = "loguru-0.6.0.tar.gz", hash = "sha256:066bd06758d0a513e9836fd9c6b5a75bfb3fd36841f4b996bc60b547a309d41c"},
+]
+loguru-mypy = [
+    {file = "loguru-mypy-0.0.4.tar.gz", hash = "sha256:1f1767d7737f1825295ce147f7e751f91837f5759b3c2f41801adc65691aeed4"},
+    {file = "loguru_mypy-0.0.4-py3-none-any.whl", hash = "sha256:98e044be509887a314e683a1e851813310b396be48388c1fe4de97a2eac99d4d"},
 ]
 markdown-it-py = [
     {file = "markdown-it-py-2.1.0.tar.gz", hash = "sha256:cf7e59fed14b5ae17c0006eff14a2d9a00ed5f3a846148153899a0224e2c07da"},
@@ -3083,8 +3098,8 @@ soupsieve = [
     {file = "soupsieve-2.3.2.post1.tar.gz", hash = "sha256:fc53893b3da2c33de295667a0e19f078c14bf86544af307354de5fcf12a3f30d"},
 ]
 sphinx = [
-    {file = "Sphinx-5.2.3.tar.gz", hash = "sha256:5b10cb1022dac8c035f75767799c39217a05fc0fe2d6fe5597560d38e44f0363"},
-    {file = "sphinx-5.2.3-py3-none-any.whl", hash = "sha256:7abf6fabd7b58d0727b7317d5e2650ef68765bbe0ccb63c8795fa8683477eaa2"},
+    {file = "Sphinx-5.3.0.tar.gz", hash = "sha256:51026de0a9ff9fc13c05d74913ad66047e104f56a129ff73e174eb5c3ee794b5"},
+    {file = "sphinx-5.3.0-py3-none-any.whl", hash = "sha256:060ca5c9f7ba57a08a1219e547b269fadf125ae25b06b9fa7f66768efb652d6d"},
 ]
 sphinx-autobuild = [
     {file = "sphinx-autobuild-2021.3.14.tar.gz", hash = "sha256:de1ca3b66e271d2b5b5140c35034c89e47f263f2cd5db302c9217065f7443f05"},
@@ -3192,8 +3207,8 @@ types-toml = [
     {file = "types_toml-0.10.8-py3-none-any.whl", hash = "sha256:8300fd093e5829eb9c1fba69cee38130347d4b74ddf32d0a7df650ae55c2b599"},
 ]
 types-urllib3 = [
-    {file = "types-urllib3-1.26.25.tar.gz", hash = "sha256:5aef0e663724eef924afa8b320b62ffef2c1736c1fa6caecfc9bc6c8ae2c3def"},
-    {file = "types_urllib3-1.26.25-py3-none-any.whl", hash = "sha256:c1d78cef7bd581e162e46c20a57b2e1aa6ebecdcf01fd0713bb90978ff3e3427"},
+    {file = "types-urllib3-1.26.25.1.tar.gz", hash = "sha256:a948584944b2412c9a74b9cf64f6c48caf8652cb88b38361316f6d15d8a184cd"},
+    {file = "types_urllib3-1.26.25.1-py3-none-any.whl", hash = "sha256:f6422596cc9ee5fdf68f9d547f541096a20c2dcfd587e37c804c9ea720bf5cb2"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.4.0-py3-none-any.whl", hash = "sha256:16fa4864408f655d35ec496218b85f79b3437c829e93320c7c9215ccfd92489e"},

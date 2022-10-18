@@ -21,13 +21,13 @@ from .query import rcsb_metadata
 
 # global constants
 unused_cli_funcs = (
-    water_neighbors,
     list_columns,
-    print_columns,
     parquet_to_tsv,
     query,
     rcsb_metadata,
+    print_columns,
     print_rcsb_attributes,
+    water_neighbors,
 )  # noqa: F841
 VERSION: str = metadata.version(NAME)
 click_object = typer.main.get_command(APP)  # noqa: F841

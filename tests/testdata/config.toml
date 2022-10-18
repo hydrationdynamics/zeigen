@@ -2,7 +2,6 @@
 polymer_entity_type = "Protein"
 has_experimental_data = true
 
-
 [query.neutron]
 data_collection_resolution_min_A = 1.5
 
@@ -41,10 +40,10 @@ rcsb_entry_info = [
       "resolution_combined"
       ]
 
-[[report.rcsb_entry_info]]
-diffrn_resolution_high  = [
-     "value"
-     ]
+#[[report.rcsb_entry_info]]
+#diffrn_resolution_high  = [
+#     "value"
+#     ]
 
 [find]
 junk = "blah"

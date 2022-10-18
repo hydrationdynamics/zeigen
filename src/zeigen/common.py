@@ -12,16 +12,17 @@ from statsdict import StatsDict  # type: ignore
 
 # module imports
 from . import __doc__ as docstring
+from .rcsb_cache import RCSBCache
 
 
 # global constants
 DEFAULT_STDERR_LOG_LEVEL = "INFO"
 NO_LEVEL_BELOW = 30  # Don't print level for messages below this level
 NAME = "zeigen"
-RCSB_DATA_GRAPHQL_URL = "https://data.rcsb.org/graphql"
 ID_FIELD = "rcsb_id"
-ID_FIELD_LEN = 4
 SUB_FIELD = "sub"
+NEIGHBOR_FILE = "neighbors.tsv"
+METADATA_FILE = "metadata.json"
 
 
 class GlobalState(TypedDict):
@@ -45,3 +46,4 @@ logger.remove()
 logger.add(sys.stderr, level=STATE["log_level"], format=_stderr_format_func)
 APP = typer.Typer(help=docstring, name=NAME)
 STATS = StatsDict(logger=logger, app=APP, module_name=NAME)
+RCSB_CACHE = RCSBCache(logger=logger, app=APP)

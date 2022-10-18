@@ -62,11 +62,14 @@ def print_docstring() -> Callable:
     return decorator
 
 
-def run_zeigen(args):
+def run_zeigen(args, envvardict=None):
     """Run zeigen with args."""
     command_string = " ".join(args)
     environ = copy.deepcopy(os.environ)
     environ["ZEIGEN_CONFIG_DIR"] = "."
+    if envvardict is not None:
+        for k in envvardict.keys():
+            environ[k] = envvardict[k]
     try:
         output = sh.zeigen(args, _env=environ)
     except sh.ErrorReturnCode as errors:

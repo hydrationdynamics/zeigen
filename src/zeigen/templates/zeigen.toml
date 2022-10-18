@@ -99,7 +99,13 @@ type = "str"
 name = "title"
 
 [find]
-special_point_radius = 3.0
+populate_radius = 3.0
+neighbor_radius = 2.8
+special_point_radius = 2.0
+min_dist = 0.1
+
+[rcsb_cache]
+dir = "/scratch/rcsb"
 
 [plot]
 # See https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html

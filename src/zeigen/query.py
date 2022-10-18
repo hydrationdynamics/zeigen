@@ -1,5 +1,4 @@
-"""Query PDB for structures."""
-# third-party imports
+"""Query RCSB for structure metadata and sequences."""
 import json
 import operator
 import time
@@ -30,12 +29,12 @@ from rcsbsearch.search import Terminal  # type: ignore
 from .common import APP
 from .common import ID_FIELD
 from .common import NAME
-from .common import RCSB_DATA_GRAPHQL_URL
 from .common import STATS
 from .common import SUB_FIELD
 from .config import read_config
 
 
+RCSB_DATA_GRAPHQL_URL = "https://data.rcsb.org/graphql"
 RCSB_ATTRIBUTES = [a.attribute for a in rcsb_attributes]
 OPERATOR_DICT = {
     "<": operator.lt,
