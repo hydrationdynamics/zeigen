@@ -1,6 +1,7 @@
 """Tests for data ingestion."""
 # third-party imports
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 # module imports
 from . import help_check
@@ -24,7 +25,9 @@ def test_water_neighbors(datadir_mgr):
         save_outputs=True,
         outscope="module",
     ):
-        args = ["--verbose", SUBCOMMAND, "5YCE"]
-        run_zeigen(args)
-        for filestring in ["5YCE/neighbors.tsv", "5YCE/metadata.json"]:
-            assert Path(filestring).exists()
+        with TemporaryDirectory() as cache_dir:
+            env_vars = {"RCSB_CACHE_DIR": cache_dir}
+            args = ["--verbose", SUBCOMMAND, "5YCE"]
+            run_zeigen(args, envvardict=env_vars)
+            for filestring in ["5YCE/neighbors.tsv", "5YCE/metadata.json"]:
+                assert Path(filestring).exists()
