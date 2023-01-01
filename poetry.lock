@@ -544,7 +544,7 @@ python-versions = ">=3.6,<4"
 
 [[package]]
 name = "identify"
-version = "2.5.6"
+version = "2.5.11"
 description = "File identification library for Python"
 category = "dev"
 optional = false
@@ -900,8 +900,8 @@ python-versions = ">=3.8"
 
 [package.dependencies]
 numpy = [
-    {version = ">=1.21.0", markers = "python_version >= \"3.10\""},
     {version = ">=1.20.3", markers = "python_version < \"3.10\""},
+    {version = ">=1.21.0", markers = "python_version >= \"3.10\""},
 ]
 python-dateutil = ">=2.8.1"
 pytz = ">=2020.1"
@@ -1980,6 +1980,10 @@ biopython = [
     {file = "biopython-1.79-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d759ccb6e7539130f0b272bc246715cad2a2fb91520d62db183d62d65f80a215"},
     {file = "biopython-1.79-cp310-cp310-win32.whl", hash = "sha256:1af4348c17e43f3c79a16af87424d8e3a32e2168ab9246106a085bbb2b8d3450"},
     {file = "biopython-1.79-cp310-cp310-win_amd64.whl", hash = "sha256:9eadfd4300f534cd4fa39613eeee786d2c3d6b981d373c5c46616fa1a97cad10"},
+    {file = "biopython-1.79-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:1163ee42247d0ddb58838e5845de4b7b51012a48eb4b61e1f517edfeccab19db"},
+    {file = "biopython-1.79-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:535ca75060786a682e6572abdc42420fa8a54af388297da7c56d151c7cc63eec"},
+    {file = "biopython-1.79-cp311-cp311-win32.whl", hash = "sha256:6d1b8a63cb569209fb431d34dea0792d5c3ec0207aada3bdec3f8bf0c4a406fb"},
+    {file = "biopython-1.79-cp311-cp311-win_amd64.whl", hash = "sha256:0ead3c2df8fc4012fc7b1a2751be93c8b0fae677934e78d30182411ed34991bb"},
     {file = "biopython-1.79-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:72a1477cf1701964c7224e506a54fd65d1cc5228da200b634a17992230aa1cbd"},
     {file = "biopython-1.79-cp36-cp36m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:365569543ea58dd07ef205ec351c23b6c1a3200d5d321eb28ceaecd55eb5955e"},
     {file = "biopython-1.79-cp36-cp36m-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:4be31815226052d86d4c2f6a103c40504e34bba3e25cc1b1d687a3203c42fb6e"},
@@ -2357,8 +2361,8 @@ graphql-core = [
     {file = "graphql_core-3.2.3-py3-none-any.whl", hash = "sha256:5766780452bd5ec8ba133f8bf287dc92713e3868ddd83aee4faab9fc3e303dc3"},
 ]
 identify = [
-    {file = "identify-2.5.6-py2.py3-none-any.whl", hash = "sha256:b276db7ec52d7e89f5bc4653380e33054ddc803d25875952ad90b0f012cbcdaa"},
-    {file = "identify-2.5.6.tar.gz", hash = "sha256:6c32dbd747aa4ceee1df33f25fed0b0f6e0d65721b15bd151307ff7056d50245"},
+    {file = "identify-2.5.11-py2.py3-none-any.whl", hash = "sha256:e7db36b772b188099616aaf2accbee122949d1c6a1bac4f38196720d6f9f06db"},
+    {file = "identify-2.5.11.tar.gz", hash = "sha256:14b7076b29c99b1b0b8b08e96d448c7b877a9b07683cd8cfda2ea06af85ffa1c"},
 ]
 idna = [
     {file = "idna-3.4-py3-none-any.whl", hash = "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"},
@@ -2463,6 +2467,7 @@ kiwisolver = [
     {file = "kiwisolver-1.4.4.tar.gz", hash = "sha256:d41997519fcba4a1e46eb4a2fe31bc12f0ff957b2b81bac28db24744f333e955"},
 ]
 livereload = [
+    {file = "livereload-2.6.3-py2.py3-none-any.whl", hash = "sha256:ad4ac6f53b2d62bb6ce1a5e6e96f1f00976a32348afedcb4b6d68df2a1d346e4"},
     {file = "livereload-2.6.3.tar.gz", hash = "sha256:776f2f865e59fde56490a56bcc6773b6917366bce0c267c60ee8aaf1a0959869"},
 ]
 loguru = [
